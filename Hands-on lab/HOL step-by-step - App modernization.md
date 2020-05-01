@@ -468,8 +468,6 @@ At this point, you have migrated the database schema using DMA. In this task, yo
  
    ![](media/am9.png)
 
-    ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
-
 4. Select **Create and run activity**.
 
 5. On the Migration Wizard **Select source** blade, enter the following:
