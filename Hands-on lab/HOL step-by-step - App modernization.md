@@ -145,7 +145,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008** VM by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **Sql2008-uniqueid VM** from the list of resources.
 
-   ![](images/am1.png)
+   ![](media/am1.png)
 
 2. On the SqlServer2008 Virtual Machine's **Overview** blade, select **Connect** on the top menu.
 
@@ -174,7 +174,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 8. In the SSMS **Connect to Server** dialog, enter **Sql2008-uniqueid** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
 
-   ![](images/am2.png)
+   ![](media/am2.png)
 
 9. Once connected, expand **Databases** under SQLSERVER2008 in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
 
@@ -274,7 +274,7 @@ Contoso would like an assessment to see what potential issues they might need to
    - **Encrypt connection**: Check this box.
    - **Trust server certificate**: Check this box.
 
-      ![](images/am3.png)
+      ![](media/am3.png)
 
 7. Select **Connect**.
 
@@ -324,7 +324,7 @@ After you have reviewed the assessment results and you have ensured the database
    - **Trust server certificate**: Check this box.
    - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
 
-   ![](images/am5.png)
+   ![](media/am5.png)
 
 5. Select **Next**.
 
@@ -400,13 +400,13 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 1. Click on **Show Advanced Settings**.
 
-      ![](images/am14.png)
+      ![](media/am14.png)
       
 2. Use exisiting hands-on-lab-SUFFIX resource group and for:
    - **storage account**: Create new and enter sa-uniqueid, for example: sa176667.
    - **file share**: Create new and enter fs-uniqueid, for example: fs176667.
       
-     ![](images/am7.png)
+     ![](media/am7.png)
      
  Then select **Create Storage**.
 
@@ -436,7 +436,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 7. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIPAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
-   ![](images/am8.png) 
+   ![](media/am8.png) 
 
 8. Next, run a second command to retrieve the server name of your Azure SQL Database:
 
@@ -470,7 +470,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
     - **Choose type of activity**: Select **Offline data migration** 
     - **TLS 1.2 security protocol**: check the box and then **Save**.
  
-   ![](images/am9.png)
+   ![](media/am9.png)
 
     ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
 
@@ -484,7 +484,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
     - **Password**: Enter **Password.1!!**
     - **Connection properties**: Check both Encrypt connection and Trust server certificate.
 
-   ![](images/am8.png) 
+   ![](media/am8.png) 
 
 6. Select **Save**.
 
@@ -516,7 +516,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     - **Activity name**: Enter ContosoDataMigration.
 
-   ![](images/am13.png)
+   ![](media/am13.png)
 
 14. Select **Run migration**.
 
@@ -801,7 +801,7 @@ The service principal (SP) here used is to provide your web and API apps access 
 
 1. The details of the Service Principal are present on your lab's details page (as shown below):
   
-  ![](images/am12.png)
+  ![](media/am12.png)
 
 ### Task 4: Assign the service principal access to Key Vault
 
@@ -826,7 +826,9 @@ $resourceGroup = "<your-resource-group-name>"
 
 4. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor and replacing **http://contoso-apps** in --spn with the **application id** of the pre-created service principal that you can copy from lab details page.
 
-    az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
+```
+az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
+```
     
  After replacing both the values the command will look similar to one shown below:
  
