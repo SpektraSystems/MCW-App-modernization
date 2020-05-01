@@ -324,7 +324,7 @@ After you have reviewed the assessment results and you have ensured the database
    - **Trust server certificate**: Check this box.
    - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
 
-   ![](media/am5.png)
+   ![](media/am17.png)
 
 5. Select **Next**.
 
