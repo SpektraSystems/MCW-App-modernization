@@ -145,7 +145,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008** VM by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **Sql2008-uniqueid VM** from the list of resources.
 
-   ![The SqlServer2008 virtual machine is highlighted in the list of resources.](media/resources-sql-server-2008-vm.png "SQL Server 2008 VM")
+   ![](images/am1.png)
 
 2. On the SqlServer2008 Virtual Machine's **Overview** blade, select **Connect** on the top menu.
 
@@ -174,7 +174,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 8. In the SSMS **Connect to Server** dialog, enter **Sql2008-uniqueid** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
 
-   ![The SQL Server Connect to Search dialog is displayed, with SQLSERVER2008 entered into the Server name and Windows Authentication selected.](media/sql-server-2008-connect-to-server.png "Connect to Server")
+   ![](images/am2.png)
 
 9. Once connected, expand **Databases** under SQLSERVER2008 in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
 
@@ -274,7 +274,7 @@ Contoso would like an assessment to see what potential issues they might need to
    - **Encrypt connection**: Check this box.
    - **Trust server certificate**: Check this box.
 
-   ![In the Connect to a server dialog, the values specified above are entered into the appropriate fields.](media/dma-connect-to-a-server.png "Connect to a server")
+      ![](images/am3.png)
 
 7. Select **Connect**.
 
@@ -324,7 +324,7 @@ After you have reviewed the assessment results and you have ensured the database
    - **Trust server certificate**: Check this box.
    - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
 
-   ![The Select source tab of the Data Migration Assistant is displayed, with the values specified above entered into the appropriate fields.](media/data-migration-assistant-migration-select-source.png "Data Migration Assistant Select source")
+   ![](images/am5.png)
 
 5. Select **Next**.
 
@@ -436,7 +436,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 7. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIPAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
-    ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the SqlServer2008 VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
+   ![](images/am8.png) 
 
 8. Next, run a second command to retrieve the server name of your Azure SQL Database:
 
@@ -484,7 +484,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
     - **Password**: Enter **Password.1!!**
     - **Connection properties**: Check both Encrypt connection and Trust server certificate.
 
-    ![The Migration Wizard Select source blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-source.png "Migration Wizard Select source")
+   ![](images/am8.png) 
 
 6. Select **Save**.
 
