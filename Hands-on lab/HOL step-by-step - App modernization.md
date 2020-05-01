@@ -143,7 +143,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008** VM by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008** VM from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008** VM by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **Sql2008-uniqueid VM** from the list of resources.
 
    ![The SqlServer2008 virtual machine is highlighted in the list of resources.](media/resources-sql-server-2008-vm.png "SQL Server 2008 VM")
 
@@ -172,7 +172,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
    ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
 
-8. In the SSMS **Connect to Server** dialog, enter **SQLSERVER2008** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
+8. In the SSMS **Connect to Server** dialog, enter **Sql2008-uniqueid** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
 
    ![The SQL Server Connect to Search dialog is displayed, with SQLSERVER2008 entered into the Server name and Windows Authentication selected.](media/sql-server-2008-connect-to-server.png "Connect to Server")
 
@@ -267,7 +267,7 @@ Contoso would like an assessment to see what potential issues they might need to
 
 6. On the **Sources** screen, enter the following into the **Connect to a server** dialog that appears on the right-hand side:
 
-   - **Server name**: Enter **SQLSERVER2008**.
+   - **Server name**: Enter **Sql2008-uniqueid**.
    - **Authentication type**: Select **SQL Server Authentication**.
    - **Username**: Enter **WorkshopUser**
    - **Password**: Enter **Password.1!!**
@@ -316,7 +316,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 4. On the **Select source** tab, enter the following:
 
-   - **Server name**: Enter **SQLSERVER2008**.
+   - **Server name**: Enter **Sql2008-uniqueid**.
    - **Authentication type**: Select **SQL Server Authentication**.
    - **Username**: Enter **WorkshopUser**
    - **Password**: Enter **Password.1!!**
@@ -396,7 +396,19 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
     ![In the You have no storage mounted dialog, a subscription has been selected, and the Create Storage button is highlighted.](media/cloud-shell-create-storage.png "Azure Cloud Shell")
 
-    > **Note**: If creation fails, you may need to select **Advanced settings** and specify the subscription, region and resource group for the new storage account.
+    > **Note**: If creation fails, you may need to select **Advanced settings** and specify the subscription, region and resource group for the new storage account as mentioned below:
+
+1. Click on **Show Advanced Settings**.
+
+      ![](images/am14.png)
+      
+2. Use exisiting hands-on-lab-SUFFIX resource group and for:
+   - **storage account**: Create new and enter sa-uniqueid, for example: sa176667.
+   - **file share**: Create new and enter fs-uniqueid, for example: fs176667.
+      
+     ![](images/am7.png)
+     
+ Then select **Create Storage**.
 
 4. After a moment, a message that you have successfully requested a Cloud Shell appears, and a PS Azure prompt is displayed.
 
@@ -411,7 +423,13 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 6. Next, retrieve the public IP address of the SqlServer2008 VM, which is used to connect to the database on that server. Enter and run the following PowerShell command:
 
     ```powershell
-    az vm list-ip-addresses -g $resourceGroup -n SqlServer2008 --output table
+    az vm list-ip-addresses -g $resourceGroup -n Sql2008-uniqueid --output table
+    ```
+
+- Replace SqlServer2008 with name of your SQLVM. It will look similar to the one as following:
+
+    ```
+    az vm list-ip-addresses -g $resourceGroup -n Sql2008-176667 --output table
     ```
 
     > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
@@ -449,7 +467,10 @@ At this point, you have migrated the database schema using DMA. In this task, yo
     - **Project name**: Enter DataMigration.
     - **Source server type**: Select SQL Server.
     - **Target server type**: Select Azure SQL Database.
-    - **Choose type of activity**: Select **Offline data migration** and select **Save**.
+    - **Choose type of activity**: Select **Offline data migration** 
+    - **TLS 1.2 security protocol**: check the box and then **Save**.
+ 
+   ![](images/am9.png)
 
     ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
 
@@ -494,9 +515,8 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 13. On the Migration Wizard **Summary** blade, enter the following:
 
     - **Activity name**: Enter ContosoDataMigration.
-    - **Validation option**: Select Validate my database(s), check all three Validation options, and then select **Save**.
 
-    ![The Migration Wizard summary blade is displayed, ContosoDataMigration is entered into the name field, and Validate my database(s) is selected in the Choose validation option blade, with all three validation options selected.](media/dms-migration-wizard-migration-summary.png "Migration Wizard Summary")
+   ![](images/am13.png)
 
 14. Select **Run migration**.
 
@@ -774,79 +794,45 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 10. Select **Create**.
 
-### Task 3: Create a service principal
+### Task 3: Retrieve service principal details
 
-In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CLI) to create an Azure Active Directory (Azure AD) application and service principal (SP) used to provide your web and API apps access to secrets stored in Azure Key Vault.
+Your environment had a pre-created Service Principal for which details are provided along.
+The service principal (SP) here used is to provide your web and API apps access to secrets stored in Azure Key Vault.
 
-> **Important**: You must have rights within your Azure AD tenant to create applications and assign roles to complete this task.
-
-1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
-
-    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
-
-2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
-
-    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
-
-3. After a moment, you should receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
-
-    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
-
-4. At the prompt, retrieve your subscription ID by running the following command at the Cloud Shell prompt:
-
-    ```powershell
-    az account list --output table
-    ```
-
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account set --subscription <your-subscription-id>` after running the command above to set the appropriate account for the following Azure CLI commands, replacing `<your-subscription-id>` with the appropriate value from the output list above.
-
-5. In the output table, locate the subscription you are using for this hands-on lab, and copy the SubscriptionId value into a text editor, such as Notepad, for use below.
-
-6. Next, enter the following `az ad sp create-for-rbac` command at the Cloud Shell prompt, replacing `<your-subscription-id>` with the value you copied above and `<your-resource-group-name>` with the name of your **hands-on-lab-SUFFIX** resource group, and then press `Enter` to run the command.
-
-    ```powershell
-    $subscriptionId = "<your-subscription-id>"
-    $resourceGroup = "<your-resource-group-name>"
-    az ad sp create-for-rbac -n "contoso-apps" --role reader --scopes subscriptions/$subscriptionId/resourceGroups/$resourceGroup
-    ```
-
-    ![The az ad sp create-for-rbac command is entered into the Cloud Shell, and the output of the command is displayed.](media/azure-cli-create-sp.png "Azure CLI")
-
-7. Copy the entire output from the command above into a text editor, as you need the `appId`, `name` and `password` values in upcoming tasks. The output should be similar to:
-
-    ```json
-    {
-        "appId": "94ee2739-794b-4038-a378-573a5f52918c",
-        "displayName": "contoso-apps",
-        "name": "http://contoso-apps",
-        "password": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4",
-        "tenant": "d280491c-b27a-XXXX-XXXX-XXXXXXXXXXXX"
-    }
-    ```
-
-    > **Important**: Make sure you copy the output into a text editor, as the Azure Cloud Shell session eventually times out, and you won't have access to the output. The `appId` is used in the steps below to assign an access policy to Key Vault, and both the `appId` and `password` are used in the next exercise to add the configuration values to the web and API apps to allow them to read secrets from Key Vault.
+1. The details of the Service Principal are present on your lab's details page (as shown below):
+  
+  ![](images/am12.png)
 
 ### Task 4: Assign the service principal access to Key Vault
 
 In this task, you assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
 
-1. Next, run the following command to get the name of your Key Vault:
+1. Enter the following command at the Cloud Shell prompt, by replacing `<your-subscription-id>` with the value you copied above and `<your-resource-group-name>` with the name of your **hands-on-lab-SUFFIX** resource group, and then press **Enter** to run the command:
+
+```
+$subscriptionId = "<your-subscription-id>"
+$resourceGroup = "<your-resource-group-name>"
+```
+
+2. Next, run the following command to get the name of your Key Vault:
 
     ```powershell
     az keyvault list -g $resourceGroup --output table
     ```
 
-2. In the output from the previous command, copy the value from the `name` field into a text editor. You use it in the next step and also for configuration of your web and API apps.
+3. In the output from the previous command, copy the value from the `name` field into a text editor. You use it in the next step and also for configuration of your web and API apps.
 
     ![The value of the name property is highlighted in the output from the previous command.](media/azure-cloud-shell-az-keyvault-list.png "Azure Cloud Shell")
 
-3. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor.
+4. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor and replacing **http://contoso-apps** in --spn with the **application id** of the pre-created service principal that you can copy from lab details page.
 
-    ```powershell
     az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
-    ```
+    
+ After replacing both the values the command will look similar to one shown below:
+ 
+    az keyvault set-policy -n contoso-kv-uniqueid --spn 43c4ce7d-ff70-4e08-b438-b80897b0b9c7 --secret-permissions get list
 
-4. In the output, you should see your service principal appId listed with "get" and "list" permissions for secrets.
+5. In the output, you should see your service principal appId listed with "get" and "list" permissions for secrets.
 
     ![In the output from the command above, the secrets array is highlighted.](media/azure-cloud-shell-az-keyvault-set-policy.png "Azure Cloud Shell")
 
@@ -973,8 +959,8 @@ Before deploying the Web API to Azure, you need to add the required application 
 4. We are going to use the Advanced editor to add all three of the Key Vault settings at once. To do this, we are going to replace the content of the Advanced editor with the following, which you need to update as follows:
 
     - `<your-key-vault-name>`: Replace this with the name of your Key Vault, which you copied into a text editor in in the previous exercise.
-    - `<your-service-principal-application-id>`: Replace this with the `appId` value you received as output when you created the service principal.
-    - `<your-service-principal-password>`: Replace this with the `password` value you received as output when you created the service principal.
+    - `<your-service-principal-application-id>`: Replace this with the `appId` value you received as output when you created the service principal. You can retrieve this value from lab details page.
+    - `<your-service-principal-password>`: Replace this with the `password` value you received as output when you created the service principal. You can retrieve this value from lab details page.
 
     ```json
     [
