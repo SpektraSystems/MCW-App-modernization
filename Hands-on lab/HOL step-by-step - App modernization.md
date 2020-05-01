@@ -1355,7 +1355,7 @@ In this task, you use Visual Studio to create an Azure Function. This Function s
 
 In this task, you run your Function locally through the Visual Studio debugger, to verify that it is properly configured and able to retrieve documents from the `policy` container in your Storage account.
 
-> **IMPORTANT**: Internet Explorer on Windows Server 2019 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to [download and install the Chrome browser](https://www.google.com/chrome/) on your LabVM.
+> **IMPORTANT**: Internet Explorer on Windows Server 2019 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to use Microsoft Edge Browser in your LabVM.
 
 1. In the Visual Studio Solution Explorer, right-click the `Contoso.FunctionApp` project, and then select **Debug** and **Start new instance**.
 
@@ -1384,7 +1384,7 @@ In this task, you run your Function locally through the Visual Studio debugger, 
     http://localhost:7071/api/policies/Acevedo/ACE5605VZZ2ACQ
     ```
 
-6. Paste the updated into the address bar of a new Chrome web browser window and press Enter.
+6. Paste the updated into the address bar of a new Microsoft Edge web browser window and press Enter.
 
 7. In the browser, the policy document opens in a new window.
 
