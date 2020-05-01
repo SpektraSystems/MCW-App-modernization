@@ -49,12 +49,12 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - Exercise 4: Deploy Web API into Azure App Services
     - Task 1: Connect to the LabVM
     - Task 2: Open starter solution with Visual Studio
-    - Task 3: Update Web API to use Key Vault](#task-3-update-web-api-to-use-key-vault
+    - Task 3: Update Web API to use Key Vault
     - Task 4: Copy KeyVault configuration section to API App in Azure
     - Task 5: Deploy the API to Azure
   - Exercise 5: Deploy web application into Azure App Services
-    - [Task 1: Add API App URL to Web App Application settings
-    - [Task 2: Deploy web application to Azure
+    - Task 1: Add API App URL to Web App Application settings
+    - Task 2: Deploy web application to Azure
   - Exercise 6: Upload policy documents into blob storage
     - Task 1: Create container for storing PDFs in Azure storage
     - Task 2: Create a SAS token
