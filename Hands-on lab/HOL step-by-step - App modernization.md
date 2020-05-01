@@ -149,7 +149,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 2. On the SqlServer2008 Virtual Machine's **Overview** blade, select **Connect** on the top menu.
 
-   ![The SqlServer2008 VM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-sqlserver2008.png "Connect to SqlServer2008 VM")
+   ![](media/am16.png)
 
 3. On the Connect to virtual machine blade, select **Download RDP File**, then open the downloaded RDP file.
 
@@ -176,7 +176,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
    ![](media/am2.png)
 
-9. Once connected, expand **Databases** under SQLSERVER2008 in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
+9. Once connected, expand **Databases** under Sql2008-uniqueid in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
 
     ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
 
@@ -227,7 +227,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
     ![The Execute button is highlighted in the SSMS toolbar.](media/ssms-execute.png "SSMS Toolbar")
 
-13. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the SqlServer2008 VM. To do this, you can use SSMS. Right-click the SQLSERVER2008 instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
+13. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the Sql2008-uniqueid VM. To do this, you can use SSMS. Right-click the Sql2008-uniqueid instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
 
     ![In the SSMS Object Explorer, the context menu for the SQLSERVER2008 instance is displayed, and Restart is highlighted.](media/ssms-object-explorer-restart-sqlserver2008.png "Object Explorer")
 
@@ -241,7 +241,7 @@ Contoso would like an assessment to see what potential issues they might need to
 
 > **Note**: The Database Migration Assistant has already been installed on your SqlServer2008 VM. It can also be downloaded from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53595).
 
-1. On the SqlServer2008 VM, launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
+1. On the Sql2008-uniqueid VM, launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
 
    ![In the Windows Start menu, "data migration" is entered into the search bar, and Microsoft Data Migration Assistant is highlighted in the Windows start menu search results.](media/windows-start-menu-dma.png "Data Migration Assistant")
 
@@ -364,7 +364,7 @@ After you have reviewed the assessment results and you have ensured the database
 
     ![The schema deployment results are displayed, with 23 commands executed and 0 errors highlighted.](media/data-migration-assistant-migration-deployment-results.png "Schema deployment results")
 
-14. Next, open SSMS on the SqlServer2008 VM, and connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
+14. Next, open SSMS on the Sql2008-uniqueid VM, and connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
 
     - **Server name**: Paste the server name of your Azure SQL Database you copied above.
     - **Authentication type**: Select SQL Server Authentication.
@@ -382,7 +382,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 ### Task 4: Retrieve connection information for SQL databases
 
-In this task, you use the Azure Cloud shell to retrieve the IP address of the SqlServer2008 VM, which is needed to connect to your SqlServer2008 VM from DMS.
+In this task, you use the Azure Cloud shell to retrieve the IP address of the SqlServer2008 VM, which is needed to connect to your Sql2008-uniqueid VM from DMS.
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the top menu.
 
@@ -392,17 +392,13 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
     ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
-3. If prompted that you have no storage mounted, select the subscription you are using for this hands-on lab and select **Create storage**.
+3. Now you need to select **Advanced settings** and specify the subscription, region and resource group for the new storage account as mentioned below:
 
-    ![In the You have no storage mounted dialog, a subscription has been selected, and the Create Storage button is highlighted.](media/cloud-shell-create-storage.png "Azure Cloud Shell")
-
-    > **Note**: If creation fails, you may need to select **Advanced settings** and specify the subscription, region and resource group for the new storage account as mentioned below:
-
-1. Click on **Show Advanced Settings**.
+4. Click on **Show Advanced Settings**.
 
       ![](media/am14.png)
       
-2. Use exisiting hands-on-lab-SUFFIX resource group and for:
+5. Use exisiting hands-on-lab-SUFFIX resource group and for:
    - **storage account**: Create new and enter sa-uniqueid, for example: sa176667.
    - **file share**: Create new and enter fs-uniqueid, for example: fs176667.
       
@@ -410,17 +406,17 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
      
  Then select **Create Storage**.
 
-4. After a moment, a message that you have successfully requested a Cloud Shell appears, and a PS Azure prompt is displayed.
+6. After a moment, a message that you have successfully requested a Cloud Shell appears, and a PS Azure prompt is displayed.
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
-5. At the prompt, enter the following command, **replacing `<your-resource-group-name>`** with the name resource group:
+7. At the prompt, enter the following command, **replacing `<your-resource-group-name>`** with the name resource group:
 
     ```powershell
     $resourceGroup = "<your-resource-group-name>"
     ```
 
-6. Next, retrieve the public IP address of the SqlServer2008 VM, which is used to connect to the database on that server. Enter and run the following PowerShell command:
+8. Next, retrieve the public IP address of the Sql2008-uniqueid VM, which is used to connect to the database on that server. Enter and run the following PowerShell command:
 
     ```powershell
     az vm list-ip-addresses -g $resourceGroup -n Sql2008-uniqueid --output table
@@ -434,11 +430,11 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
     > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
-7. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIPAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
+9. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIPAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
    ![](media/am8.png) 
 
-8. Next, run a second command to retrieve the server name of your Azure SQL Database:
+10. Next, run a second command to retrieve the server name of your Azure SQL Database:
 
     ```powershell
     az sql server list -g $resourceGroup
@@ -446,7 +442,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
     ![The output from the az sql server list command is displayed in the Cloud Shell, and the fullyQualifiedDomainName for the server is highlighted.](media/cloud-shell-az-sql-server-list.png "Azure Cloud Shell")
 
-9. Copy the **fullyQualifiedDomainName** value into a text editor for use below.
+11. Copy the **fullyQualifiedDomainName** value into a text editor for use below.
 
 ### Task 5: Migrate the database using the Azure Database Migration Service
 
@@ -478,7 +474,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 5. On the Migration Wizard **Select source** blade, enter the following:
 
-    - **Source SQL Server instance name**: Enter the IP address of your SqlServer2008 VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
+    - **Source SQL Server instance name**: Enter the IP address of your Sql2008-uniqueid VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
     - **Authentication type**: Select SQL Authentication.
     - **Username**: Enter **WorkshopUser**
     - **Password**: Enter **Password.1!!**
@@ -660,7 +656,7 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 
    ![The Save button is highlighted on the DDM toolbar.](media/ddm-save.png "Dynamic Data Masking")
 
-5. To view the impact of the Dynamic Data Masking, return to SSMS on your SqlServer2008 VM and run a few queries against the `people` table. On your SqlServer2008 VM, open SSMS and connect to the Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
+5. To view the impact of the Dynamic Data Masking, return to SSMS on your Sql2008-uniqueid VM and run a few queries against the `people` table. On your Sql2008-uniqueid VM, open SSMS and connect to the Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
 
     - **Server name**: Paste the server name of your Azure SQL Database, as you've done previously.
     - **Authentication type**: Select SQL Server Authentication.
@@ -796,8 +792,7 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 ### Task 3: Retrieve service principal details
 
-Your environment had a pre-created Service Principal for which details are provided along.
-The service principal (SP) here used is to provide your web and API apps access to secrets stored in Azure Key Vault.
+Your environment has a pre-created Service Principal for which details are provided along. The service principal (SP) is used to provide your web and API apps access to secrets stored in Azure Key Vault.
 
 1. The details of the Service Principal are present on your lab's details page (as shown below):
   
@@ -805,7 +800,7 @@ The service principal (SP) here used is to provide your web and API apps access 
 
 ### Task 4: Assign the service principal access to Key Vault
 
-In this task, you assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
+In this task, you assign the service principal a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
 
 1. Enter the following command at the Cloud Shell prompt, by replacing `<your-subscription-id>` with the value you copied above and `<your-resource-group-name>` with the name of your **hands-on-lab-SUFFIX** resource group, and then press **Enter** to run the command:
 
@@ -961,8 +956,8 @@ Before deploying the Web API to Azure, you need to add the required application 
 4. We are going to use the Advanced editor to add all three of the Key Vault settings at once. To do this, we are going to replace the content of the Advanced editor with the following, which you need to update as follows:
 
     - `<your-key-vault-name>`: Replace this with the name of your Key Vault, which you copied into a text editor in in the previous exercise.
-    - `<your-service-principal-application-id>`: Replace this with the `appId` value you received as output when you created the service principal. You can retrieve this value from lab details page.
-    - `<your-service-principal-password>`: Replace this with the `password` value you received as output when you created the service principal. You can retrieve this value from lab details page.
+    - `<your-service-principal-application-id>`: Replace this with the `appId` value that you can retrieve this value from lab details page.
+    - `<your-service-principal-password>`: Replace this with the `password` that you can retrieve this value from lab details page.
 
     ```json
     [
