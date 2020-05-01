@@ -38,14 +38,14 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - Task 4: Retrieve connection information for SQL databases
     - Task 5: Migrate the database using the Azure Database Migration Service
   - Exercise 2: Post upgrade database enhancements
-    - [Task 1: Configure SQL Data Discovery and Classification
-    - [Task 2: Review Advanced Data Security Vulnerability Assessment
-    - [Task 3: Enable Dynamic Data Masking
+    - Task 1: Configure SQL Data Discovery and Classification
+    - Task 2: Review Advanced Data Security Vulnerability Assessment
+    - Task 3: Enable Dynamic Data Masking
   - Exercise 3: Configure Key Vault
-    - [Task 1: Add Key Vault access policy]
-    - [Task 2: Create a new secret to store the SQL connection string]
-    - [Task 3: Create a service principal]
-    - [Task 4: Assign the service principal access to Key Vault]
+    - Task 1: Add Key Vault access policy]
+    - Task 2: Create a new secret to store the SQL connection string]
+    - Task 3: Create a service principal]
+    - Task 4: Assign the service principal access to Key Vault]
   - Exercise 4: Deploy Web API into Azure App Services
     - Task 1: Connect to the LabVM
     - Task 2: Open starter solution with Visual Studio
