@@ -42,14 +42,14 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - Task 2: Review Advanced Data Security Vulnerability Assessment
     - Task 3: Enable Dynamic Data Masking
   - Exercise 3: Configure Key Vault
-    - Task 1: Add Key Vault access policy]
-    - Task 2: Create a new secret to store the SQL connection string]
-    - Task 3: Create a service principal]
-    - Task 4: Assign the service principal access to Key Vault]
+    - Task 1: Add Key Vault access policy
+    - Task 2: Create a new secret to store the SQL connection string
+    - Task 3: Create a service principal
+    - Task 4: Assign the service principal access to Key Vault
   - Exercise 4: Deploy Web API into Azure App Services
     - Task 1: Connect to the LabVM
     - Task 2: Open starter solution with Visual Studio
-    - Task 3: Update Web API to use Key Vault](#task-3-update-web-api-to-use-key-vault)
+    - Task 3: Update Web API to use Key Vault](#task-3-update-web-api-to-use-key-vault
     - Task 4: Copy KeyVault configuration section to API App in Azure
     - Task 5: Deploy the API to Azure
   - Exercise 5: Deploy web application into Azure App Services
@@ -135,7 +135,7 @@ Duration: 45 minutes
 
 In this exercise, you use the Microsoft Data Migration Assistant (DMA) to assess the `ContosoInsurance` database for a migration to Azure SQL Database. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and Azure SQL Database.
 
-> DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the [Data Migration Assistant documentation](https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current).
+> DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the **Data Migration Assistant** documentation here https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current
 
 ### Task 1: Configure the ContosoInsurance database on the SqlServer2008 VM
 
@@ -237,9 +237,9 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 ### Task 2: Perform assessment for migration to Azure SQL Database
 
-Contoso would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/sql/dma/dma-overview?view=sql-server-2017) (DMA) to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
+Contoso would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you use the **Microsoft Data Migration Assistant (DMA)** here https://docs.microsoft.com/sql/dma/dma-overview?view=sql-server-2017 to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
 
-> **Note**: The Database Migration Assistant has already been installed on your SqlServer2008 VM. It can also be downloaded from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=53595).
+> **Note**: The Database Migration Assistant has already been installed on your SqlServer2008 VM. It can also be downloaded from the Microsoft Download Center (https://www.microsoft.com/download/details.aspx?id=53595).
 
 1. On the Sql2008-uniqueid VM, launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
 
@@ -448,7 +448,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 At this point, you have migrated the database schema using DMA. In this task, you migrate the data from the `ContosoInsurance` database into the new Azure SQL Database using the Azure Database Migration Service.
 
-> The [Azure Database Migration Service](https://docs.microsoft.com/azure/dms/dms-overview) integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
+> The Azure Database Migration Service (https://docs.microsoft.com/azure/dms/dms-overview) integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
 
 1. In the Azure portal, navigate to your Azure Database Migration Service by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueId** Azure Database Migration Service in the list of resources.
 
@@ -540,13 +540,13 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 Duration: 30 minutes
 
-In this exercise you explore some of the security features of Azure SQL Database, and review some of the security benefits that come with running your database in Azure. [SQL Database Advance Data Security](https://docs.microsoft.com/azure/sql-database/sql-database-advanced-data-security) (ADS) provides advanced SQL security capabilities, including functionality for discovering and classifying sensitive data, surfacing and mitigating potential database vulnerabilities, and detecting anomalous activities that could indicate a threat to your database.
+In this exercise you explore some of the security features of Azure SQL Database, and review some of the security benefits that come with running your database in Azure. SQL Database Advance Data Security (https://docs.microsoft.com/azure/sql-database/sql-database-advanced-data-security) provides advanced SQL security capabilities, including functionality for discovering and classifying sensitive data, surfacing and mitigating potential database vulnerabilities, and detecting anomalous activities that could indicate a threat to your database.
 
 > **Note**: Advanced Data Security was enabled on the database with the ARM template, so you do not need to do that here.
 
 ### Task 1: Configure SQL Data Discovery and Classification
 
-In this task, you look at the [SQL Data Discovery and Classification](https://docs.microsoft.com/sql/relational-databases/security/sql-data-discovery-and-classification?view=sql-server-2017) feature of Advanced Data Security. Data Discovery & Classification introduces a new tool for discovering, classifying, labeling & reporting the sensitive data in your databases. It introduces a set of advanced services, forming a new SQL Information Protection paradigm aimed at protecting the data in your database, not just the database. Discovering and classifying your most sensitive data (business, financial, healthcare, etc.) can play a pivotal role in your organizational information protection stature.
+In this task, you look at the SQL Data Discovery and Classification (https://docs.microsoft.com/sql/relational-databases/security/sql-data-discovery-and-classification?view=sql-server-2017) feature of Advanced Data Security. Data Discovery & Classification introduces a new tool for discovering, classifying, labeling & reporting the sensitive data in your databases. It introduces a set of advanced services, forming a new SQL Information Protection paradigm aimed at protecting the data in your database, not just the database. Discovering and classifying your most sensitive data (business, financial, healthcare, etc.) can play a pivotal role in your organizational information protection stature.
 
 1. In the Azure portal, navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
 
@@ -604,7 +604,7 @@ In this task, you look at the [SQL Data Discovery and Classification](https://do
 
 ### Task 2: Review Advanced Data Security Vulnerability Assessment
 
-In this task, you review an assessment report generated by ADS for the `ContosoInsurance` database. The [SQL Vulnerability Assessment service](https://docs.microsoft.com/azure/sql-database/sql-vulnerability-assessment) is a service that provides visibility into your security state, and includes actionable steps to resolve security issues, and enhance your database security.
+In this task, you review an assessment report generated by ADS for the `ContosoInsurance` database. The SQL Vulnerability Assessment service (https://docs.microsoft.com/azure/sql-database/sql-vulnerability-assessment) is a service that provides visibility into your security state, and includes actionable steps to resolve security issues, and enhance your database security.
 
 1. Return to the **Advanced Data Security** blade for the `ContosoInsurance` SQL database and then select the **Vulnerability Assessment** tile.
 
@@ -630,7 +630,7 @@ In this task, you review an assessment report generated by ADS for the `ContosoI
 
 ### Task 3: Enable Dynamic Data Masking
 
-In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver15) (DDM) into your Azure SQL Database to limit access to sensitive data in the database through query results. This feature helps prevent unauthorized access to sensitive data by enabling customers to designate how much of the sensitive data to reveal with minimal impact on the application layer. It’s a policy-based security feature that hides the sensitive data in the result set of a query over designated database fields, while the data in the database is not changed.
+In this task, you enable Dynamic Data Masking (https://docs.microsoft.com/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver15) (DDM) into your Azure SQL Database to limit access to sensitive data in the database through query results. This feature helps prevent unauthorized access to sensitive data by enabling customers to designate how much of the sensitive data to reveal with minimal impact on the application layer. It’s a policy-based security feature that hides the sensitive data in the result set of a query over designated database fields, while the data in the database is not changed.
 
 > For example, a service representative at a call center may identify callers by several digits of their credit card number, but those data items should not be fully exposed to the service representative. A masking rule can be defined that masks all but the last four digits of any credit card number in the result set of any query. As another example, an appropriate data mask can be defined to protect personally identifiable information (PII) data, so that a developer can query production environments for troubleshooting purposes without violating compliance regulations.
 
@@ -1039,7 +1039,7 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
     ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
-    > **Note**: [Swagger UI](https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
+    > **Note**: Swagger UI (https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
 
 9. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
 
@@ -1198,7 +1198,7 @@ In this task, you generate a shared access signature (SAS) token for your storag
 
 ### Task 3: Bulk upload PDFs to blob storage using AzCopy
 
-In this task, you download and install [AzCopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy). You then use AzCopy to copy the PDF files from the "on-premises" location into the policies container in Azure storage.
+In this task, you download and install **AzCopy**. You then use AzCopy to copy the PDF files from the "on-premises" location into the policies container in Azure storage.
 
 1. On your LabVM, open a web browser and download the latest version of AzCopy from <https://aka.ms/downloadazcopy>.
 
@@ -1555,7 +1555,7 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
 Duration: 15 minutes
 
-Contoso has requested the ability to perform full-text searching on policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about [cognitive search with the Azure Cognitive Search Service](https://docs.microsoft.com/azure/search/cognitive-search-concept-intro), and are interested to learn if it could be used to make the data in their search index more useful. In this exercise, you configure cognitive search for the policies blob storage container.
+Contoso has requested the ability to perform full-text searching on policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about cognitive search with the Azure Cognitive Search Service (https://docs.microsoft.com/azure/search/cognitive-search-concept-intro), and are interested to learn if it could be used to make the data in their search index more useful. In this exercise, you configure cognitive search for the policies blob storage container.
 
 ### Task 1: Add Azure Cognitive Search to Storage account
 
