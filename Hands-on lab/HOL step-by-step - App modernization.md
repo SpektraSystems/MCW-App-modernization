@@ -402,7 +402,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
    - **storage account**: Create new and enter sa-uniqueid, for example: sa176667.
    - **file share**: Create new and enter fs-uniqueid, for example: fs176667.
       
-     ![](media/am7.png)
+   ![](media/am7.png)
      
  Then select **Create Storage**.
 
