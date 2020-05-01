@@ -520,19 +520,10 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     > The migration takes approximately 2 - 3 minutes to complete.
 
-16. When the migration is complete, you should see the status as **Completed**, but may also see a status of **Warning**.
+16. When the migration is complete, you should see the status as **Completed**.
 
     ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-complete.png "Migration with Completed status")
 
-    ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-warning.png "Migration with Warning status")
-
-17. When the migration is complete, select the ellipsis button on the toolbar, and then select **Download report**.
-
-    ![The download report button is highlighted in the toolbar menu.](media/dms-migration-wizard-download-report.png "Download report")
-
-18. Review the database migration report. If you received a status of "Warning" for your migration, you can find the reason in the Validation Summary section. In the report below, you can see that a storage object schema difference triggered a warning. However, the report also reveals that everything was migrated successfully.
-
-    ![The output of the database migration report is displayed.](media/dms-migration-wizard-report.png "Database migration report")
 
 ## Exercise 2: Post upgrade database enhancements
 
