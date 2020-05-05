@@ -1412,7 +1412,7 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
-2. On the Function App blade, select **Monitor** and then click on **Confirgure** button giver under **Configure Application Insights**.
+2. On the Function App blade, select **Monitor** and then click on **Configure** button giver under **Configure Application Insights**.
 
    ![](media/am21.png)
 
