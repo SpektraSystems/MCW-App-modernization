@@ -44,7 +44,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - Exercise 3: Configure Key Vault
     - Task 1: Add Key Vault access policy
     - Task 2: Create a new secret to store the SQL connection string
-    - Task 3: Create a service principal
+    - Task 3: Retrieve service principal details
     - Task 4: Assign the service principal access to Key Vault
   - Exercise 4: Deploy Web API into Azure App Services
     - Task 1: Connect to the LabVM
