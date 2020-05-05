@@ -463,10 +463,9 @@ At this point, you have migrated the database schema using DMA. In this task, yo
     - **Project name**: Enter DataMigration.
     - **Source server type**: Select SQL Server.
     - **Target server type**: Select Azure SQL Database.
-    - **Choose type of activity**: Select **Offline data migration** 
-    - **TLS 1.2 security protocol**: check the box and then **Save**.
- 
-   ![](media/am9.png)
+    - **Choose type of activity**: Select **Offline data migration** and select **Save**.
+
+    ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
 
 4. Select **Create and run activity**.
 
@@ -478,7 +477,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
     - **Password**: Enter **Password.1!!**
     - **Connection properties**: Check both Encrypt connection and Trust server certificate.
 
-   ![](media/am8.png) 
+   ![](media/am9.png) 
 
 6. Select **Save**.
 
