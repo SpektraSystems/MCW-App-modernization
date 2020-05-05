@@ -505,7 +505,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 12. On the Migration Wizard **Summary** blade, enter the following:
 
-    - **Activity name**: Enter ContosoDataMigration.
+    - **Activity name**: Enter **ContosoDataMigration**.
 
    ![](media/am13.png)
 
@@ -948,16 +948,16 @@ Before deploying the Web API to Azure, you need to add the required application 
     ```json
     [
         {
-            "name": "KeyVaultName",
-            "value": "<your-key-vault-name>"
-        },
-        {
             "name": "KeyVaultClientId",
             "value": "<your-service-principal-application-id>"
         },
         {
             "name": "KeyVaultClientSecret",
             "value": "<your-service-principal-password>"
+        },
+        {
+            "name": "KeyVaultName",
+            "value": "<your-key-vault-name>"
         }
     ]
     ```
@@ -967,16 +967,16 @@ Before deploying the Web API to Azure, you need to add the required application 
     ```json
     [
         {
-            "name": "KeyVaultName",
-            "value": "contosokvjt7yc3zphxfda"
-        },
-        {
             "name": "KeyVaultClientId",
             "value": "94ee2739-794b-4038-a378-573a5f52918c"
         },
         {
             "name": "KeyVaultClientSecret",
             "value": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4"
+        }
+        {
+            "name": "KeyVaultName",
+            "value": "contosokvjt7yc3zphxfda"
         }
     ]
     ```
