@@ -973,7 +973,7 @@ Before deploying the Web API to Azure, you need to add the required application 
         {
             "name": "KeyVaultClientSecret",
             "value": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4"
-        }
+        },
         {
             "name": "KeyVaultName",
             "value": "contosokvjt7yc3zphxfda"
