@@ -477,7 +477,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
     - **Password**: Enter **Password.1!!**
     - **Connection properties**: Check both Encrypt connection and Trust server certificate. Then select **Save**.
 
-   ![](media/am18.png) 
+   ![](media/am19.png) 
 
 6. On the Migration Wizard **Select target** blade, enter the following:
 
