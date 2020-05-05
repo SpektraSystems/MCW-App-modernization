@@ -1176,9 +1176,9 @@ In this task, you generate a shared access signature (SAS) token for your storag
 
     ![The Shared access signature menu item is highlighted.](media/storage-shared-access-signature.png "Storage account")
 
-2. On the Shared access signature blade, select **Generate SAS and connection string**, and then copy the SAS token value by selecting the Copy to clipboard button to the right of the value.
+2. On the Shared access signature blade, select **Allowed resource types**, and then check **Service,** **Container** and **Object**. Now click on **Generate SAS Token** copy the SAS token value by selecting the Copy to clipboard button to the right of the value.
 
-    ![On the Share access signature blade, the Generate SAS and connection string button is highlighted, and the copy to clipboard button is highlighted to the right of the SAS token value.](media/storage-shared-access-signature-generate.png "Shared access signature")
+   ![](media/am20.png)
 
 3. Paste the SAS token into a text editor for later use.
 
@@ -1412,9 +1412,9 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
-2. On the Function App blade, select **Configure Application Insights to capture function logs.** at the top of the blade.
+2. On the Function App blade, select **Monitor** and then click on **Confirgure** button giver under **Configure Application Insights**.
 
-    ![The Configure Application Insights to capture function logs is highlighted on the function app blade.](media/function-app-add-app-insights.png "Function App")
+   ![](media/am21.png)
 
 3. On the Application Insights blade, select **Create new resource** and enter a globally unique name, such as contoso-ai-SUFFIX, and then select **OK**.
 
