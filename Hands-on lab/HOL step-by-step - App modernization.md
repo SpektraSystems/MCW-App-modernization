@@ -475,13 +475,11 @@ At this point, you have migrated the database schema using DMA. In this task, yo
     - **Authentication type**: Select SQL Authentication.
     - **Username**: Enter **WorkshopUser**
     - **Password**: Enter **Password.1!!**
-    - **Connection properties**: Check both Encrypt connection and Trust server certificate.
+    - **Connection properties**: Check both Encrypt connection and Trust server certificate. Then select **Save**.
 
-   ![](media/am9.png) 
+   ![](media/am18.png) 
 
-6. Select **Save**.
-
-7. On the Migration Wizard **Select target** blade, enter the following:
+6. On the Migration Wizard **Select target** blade, enter the following:
 
     - **Target server name**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., contosoinsurance-jt7yc3zphxfda.database.windows.net), which you copied in the previous task.
     - **Authentication type**: Select SQL Authentication.
@@ -491,35 +489,35 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-target.png "Migration Wizard Select target")
 
-8. Select **Save**.
+7. Select **Save**.
 
-9. On the Migration Wizard **Map to target databases** blade, confirm that **ContosoInsurance** is checked as the source database, and that it is also the target database on the same line, then select **Save**.
+8. On the Migration Wizard **Map to target databases** blade, confirm that **ContosoInsurance** is checked as the source database, and that it is also the target database on the same line, then select **Save**.
 
     ![The Migration Wizard Map to target database blade is displayed, with the ContosoInsurance line highlighted.](media/dms-migration-wizard-map-to-target-databases.png "Migration Wizard Map to target databases")
 
-10. Select **Save**.
+9. Select **Save**.
 
-11. On the Migration Wizard **Configure migration settings** blade, expand the **ContosoInsurance** database and verify all the tables are selected.
+10. On the Migration Wizard **Configure migration settings** blade, expand the **ContosoInsurance** database and verify all the tables are selected.
 
     ![The Migration Wizard Configure migration settings blade is displayed, with the expand arrow for ContosoInsurance highlighted, and all the tables checked.](media/dms-migration-wizard-configure-migration-settings.png "Migration Wizard Configure migration settings")
 
-12. Select **Save**.
+11. Select **Save**.
 
-13. On the Migration Wizard **Summary** blade, enter the following:
+12. On the Migration Wizard **Summary** blade, enter the following:
 
     - **Activity name**: Enter ContosoDataMigration.
 
    ![](media/am13.png)
 
-14. Select **Run migration**.
+13. Select **Run migration**.
 
-15. Monitor the migration on the status screen that appears. Select the refresh icon in the toolbar to retrieve the latest status.
+14. Monitor the migration on the status screen that appears. Select the refresh icon in the toolbar to retrieve the latest status.
 
     ![On the Migration job blade, the Refresh button is highlighted, and a status of Full backup uploading is displayed and highlighted.](media/dms-migration-wizard-status-running.png "Migration status")
 
     > The migration takes approximately 2 - 3 minutes to complete.
 
-16. When the migration is complete, you should see the status as **Completed**.
+15. When the migration is complete, you should see the status as **Completed**.
 
     ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-complete.png "Migration with Completed status")
 
