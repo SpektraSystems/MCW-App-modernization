@@ -251,8 +251,8 @@ Contoso would like an assessment to see what potential issues they might need to
 
 3. In the New project pane, set the following:
 
-   - **Project type**: Select Assessment.
-   - **Project name**: Enter Assessment.
+   - **Project type**: Select ```Assessment```.
+   - **Project name**: Enter ```Assessment```.
    - **Assessment type**: Select Database Engine.
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
@@ -304,8 +304,8 @@ After you have reviewed the assessment results and you have ensured the database
 
 2. In the New project dialog, enter the following:
 
-   - **Project type**: Select Migration.
-   - **Project name**: Enter Migration.
+   - **Project type**: Select ```Migration```.
+   - **Project name**: Enter ```Migration```.
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
    - **Migration scope**: Select Schema only.
@@ -318,8 +318,8 @@ After you have reviewed the assessment results and you have ensured the database
 
    - **Server name**: Enter **Sql2008-uniqueid**.
    - **Authentication type**: Select **SQL Server Authentication**.
-   - **Username**: Enter **WorkshopUser**
-   - **Password**: Enter **Password.1!!**
+   - **Username**: Enter ```WorkshopUser```
+   - **Password**: Enter ```Password.1!!**```
    - **Encrypt connection**: Check this box.
    - **Trust server certificate**: Check this box.
    - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
@@ -340,8 +340,8 @@ After you have reviewed the assessment results and you have ensured the database
 
    - **Server name**: Paste the server name of your Azure SQL Database you copied above.
    - **Authentication type**: Select SQL Server Authentication.
-   - **Username**: Enter **demouser**
-   - **Password**: Enter **Password.1!!**
+   - **Username**: Enter ```demouser```
+   - **Password**: Enter ```Password.1!!```
    - **Encrypt connection**: Check this box.
    - **Trust server certificate**: Check this box.
    - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
@@ -368,8 +368,8 @@ After you have reviewed the assessment results and you have ensured the database
 
     - **Server name**: Paste the server name of your Azure SQL Database you copied above.
     - **Authentication type**: Select SQL Server Authentication.
-    - **Username**: Enter **demouser**
-    - **Password**: Enter **Password.1!!**
+    - **Username**: Enter ```demouser```
+    - **Password**: Enter ```Password.1!!```
     - **Remember password**: Check this box.
 
     ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
