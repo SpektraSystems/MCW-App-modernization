@@ -304,8 +304,8 @@ After you have reviewed the assessment results and you have ensured the database
 
 2. In the New project dialog, enter the following:
 
-   - **Project type**: Select ```Migration```.
-   - **Project name**: Enter ```Migration```.
+   - **Project type**: Select ``` Migration ```
+   - **Project name**: Enter ``` Migration ```
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
    - **Migration scope**: Select Schema only.
@@ -318,8 +318,8 @@ After you have reviewed the assessment results and you have ensured the database
 
    - **Server name**: Enter **Sql2008-uniqueid**.
    - **Authentication type**: Select **SQL Server Authentication**.
-   - **Username**: Enter ```WorkshopUser```
-   - **Password**: Enter ```Password.1!!**```
+   - **Username**: Enter ``` WorkshopUser ```
+   - **Password**: Enter ``` Password.1!! ```
    - **Encrypt connection**: Check this box.
    - **Trust server certificate**: Check this box.
    - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
