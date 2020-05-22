@@ -159,8 +159,8 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 5. Enter the following credentials when prompted, and then select **OK**:
 
-   - **Username**: demouser
-   - **Password**: Password.1!!
+   - **Username**: ```demouser```
+   - **Password**: ```Password.1!!```
 
    ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdc-credentials-sql-2008.png "Enter your credentials")
 
@@ -267,10 +267,10 @@ Contoso would like an assessment to see what potential issues they might need to
 
 6. On the **Sources** screen, enter the following into the **Connect to a server** dialog that appears on the right-hand side:
 
-   - **Server name**: Enter **Sql2008-uniqueid**.
+   - **Server name**: Enter ```Sql2008-uniqueid```
    - **Authentication type**: Select **SQL Server Authentication**.
-   - **Username**: Enter **WorkshopUser**
-   - **Password**: Enter **Password.1!!**
+   - **Username**: Enter ```WorkshopUser```
+   - **Password**: Enter ```Password.1!!```
    - **Encrypt connection**: Check this box.
    - **Trust server certificate**: Check this box.
 
@@ -316,7 +316,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 4. On the **Select source** tab, enter the following:
 
-   - **Server name**: Enter **Sql2008-uniqueid**.
+   - **Server name**: Enter ```Sql2008-uniqueid```
    - **Authentication type**: Select **SQL Server Authentication**.
    - **Username**: Enter ``` WorkshopUser ```
    - **Password**: Enter ``` Password.1!! ```
@@ -473,8 +473,8 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     - **Source SQL Server instance name**: Enter the IP address of your Sql2008-uniqueid VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
     - **Authentication type**: Select SQL Authentication.
-    - **Username**: Enter **WorkshopUser**
-    - **Password**: Enter **Password.1!!**
+    - **Username**: ```WorkshopUser```
+    - **Password**: ```Password.1!!```
     - **Connection properties**: Check both Encrypt connection and Trust server certificate. Then select **Save**.
 
    ![](media/am19.png) 
@@ -483,8 +483,8 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     - **Target server name**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., contosoinsurance-jt7yc3zphxfda.database.windows.net), which you copied in the previous task.
     - **Authentication type**: Select SQL Authentication.
-    - **Username**: Enter **demouser**
-    - **Password**: Enter **Password.1!!**
+    - **Username**: ```demouser```
+    - **Password**: ```Password.1!!```
     - **Connection properties**: Check Encrypt connection.
 
     ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-target.png "Migration Wizard Select target")
@@ -505,7 +505,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 12. On the Migration Wizard **Summary** blade, enter the following:
 
-    - **Activity name**: Enter **ContosoDataMigration**.
+    - **Activity name**: ```ContosoDataMigration```
 
    ![](media/am13.png)
 
@@ -646,8 +646,8 @@ In this task, you enable Dynamic Data Masking (https://docs.microsoft.com/sql/re
 
     - **Server name**: Paste the server name of your Azure SQL Database, as you've done previously.
     - **Authentication type**: Select SQL Server Authentication.
-    - **Username**: Enter **demouser**
-    - **Password**: Enter **Password.1!!**
+    - **Username**: ```demouser```
+    - **Password**: ```Password.1!!```
     - **Remember password**: Check this box.
 
     ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
@@ -843,8 +843,8 @@ In this task, you open an RDP connection to the LabVM, and downloading a copy of
 
 5. Enter the following credentials when prompted, and then select **OK**:
 
-   - **Username**: demouser
-   - **Password**: Password.1!!
+   - **Username**: ```demouser```
+   - **Password**: ```Password.1!!```
 
    ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdc-credentials-sql-2008.png "Enter your credentials")
 
@@ -1119,8 +1119,8 @@ In this task, you publish the `Contoso.Web` application into an Azure Web App.
 
 8. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 
-    - **Username**: demouser
-    - **Password**: Password.1!!
+    - **Username**: ```demouser```
+    - **Password**: `Password.1!!`
 
     ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
 
@@ -1508,8 +1508,8 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
 2. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 
-    - **Username**: demouser
-    - **Password**: Password.1!!
+    - **Username**: ```demouser```
+    - **Password**: ```Password.1!!```
 
     ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
 
