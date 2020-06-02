@@ -233,7 +233,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 14. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service takes a few seconds to restart.
 
-    ![The Yes button is highlighted on the dialog asking if you are sure you want to restart the MSSQLSERVER service.](media/ssms-restart-service.png "Restart MSSQLSERVER service")
+   ![](media/ama.png)
 
 ### Task 2: Perform assessment for migration to Azure SQL Database
 
@@ -399,8 +399,8 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
       ![](media/am14.png)
       
 5. Use exisiting hands-on-lab-SUFFIX resource group and for:
-   - **storage account**: Create new and enter sa-uniqueid, for example: sa176667.
-   - **file share**: Create new and enter fs-uniqueid, for example: fs176667.
+   - **storage account**: Create new and enter sa{uniqueid}, for example: sa176667.
+   - **file share**: Create new and enter fs{uniqueid}, for example: fs176667.
       
    ![](media/am7.png)
      
@@ -780,9 +780,9 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 Your environment has a pre-created Service Principal for which details are provided along. The service principal (SP) is used to provide your web and API apps access to secrets stored in Azure Key Vault.
 
-1. The details of the Service Principal are present on your lab's details page (as shown below):
+1. Now to retrieve the details of Service Principal click on **Lab Environment** tab and you can review it as shown below:
   
-  ![](media/am12.png)
+  ![](media/amb.png)
 
 ### Task 4: Assign the service principal access to Key Vault
 
@@ -1410,27 +1410,31 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-func-UniqueId** App service from the list of resources.
 
-   ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
+  ![](media/amc.png)
 
-2. On the Function App blade, select **Monitor** and then click on **Configure** button giver under **Configure Application Insights**.
+2. On the Function App blade, select **Application Insights** under **Settings** pane and then click on **Turn on Application Insights**.
 
-   ![](media/am21.png)
+  ![](media/amd.png)
 
-3. On the Application Insights blade, select **Create new resource** and enter a globally unique name, such as contoso-ai-SUFFIX, and then select **OK**.
+3. Select **Create new resource** and add the following values:
+ - New Resource Name: contoso-ai-kb
+ - Location: **West US 2**
 
-    ![The Create New Application Insights blade is displayed with a unique name set under Create new resource.](media/function-app-app-insights.png "Add Application Insights")
+  ![](media/ame.png)
 
-4. Once the Application Insights resource is created, return to the Overview blade of your Function App, and select **Application Insights** under Configured Features.
+4. Click on **Apply** and select **Yes** for **Apply monitoring settings** popup.
 
-    ![Application Insights is highlighted under Configured features.](media/function-app-app-insights-link.png "Function App")
+5. Once the Application Insights resource is created, click on **View Application Insights data**.
 
-5. On the Application Insights blade, select **Live Metrics Stream** from the left-hand menu.
+  ![](media/amf.png)
+
+6. On the Application Insights blade, select **Live Metrics Stream** from the left-hand menu.
 
     ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
 
     > **Note**: You may see a message that your app is offline. You handle this below.
 
-6. Leave the Live Metrics Stream window open for reference in the next task.
+7. Leave the Live Metrics Stream window open for reference in the next task.
 
 ### Task 7: Add Function App URL to your Web App Application settings
 
@@ -1545,7 +1549,7 @@ Contoso has requested the ability to perform full-text searching on policy docum
 
 ### Task 1: Add Azure Cognitive Search to Storage account
 
-1. In the Azure portal, navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-UniqueId** Storage account resource from the list of resources.
+1. In the Azure portal, navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso{UniqueId}** Storage account resource from the list of resources.
 
    ![The Storage Account resource is highlighted in the list of resources.](media/resource-group-resources-storage-account.png "Storage account")
 
