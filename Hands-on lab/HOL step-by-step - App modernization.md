@@ -229,11 +229,11 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 13. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the Sql2008-uniqueid VM. To do this, you can use SSMS. Right-click the Sql2008-uniqueid instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
 
-    ![In the SSMS Object Explorer, the context menu for the SQLSERVER2008 instance is displayed, and Restart is highlighted.](media/ssms-object-explorer-restart-sqlserver2008.png "Object Explorer")
+   ![](media/ama.png)
 
 14. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service takes a few seconds to restart.
 
-   ![](media/ama.png)
+   ![The Yes button is highlighted on the dialog asking if you are sure you want to restart the MSSQLSERVER service.](media/ssms-restart-service.png "Restart MSSQLSERVER service")
 
 ### Task 2: Perform assessment for migration to Azure SQL Database
 
