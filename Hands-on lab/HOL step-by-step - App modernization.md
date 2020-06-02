@@ -1420,17 +1420,17 @@ In this task, you add Application Insights to your Function App in the Azure Por
  - New Resource Name: contoso-ai-kb
  - Location: **West US 2**
 
-  ![](media/ame.png)
+   ![](media/ame.png)
 
 4. Click on **Apply** and select **Yes** for **Apply monitoring settings** popup.
 
 5. Once the Application Insights resource is created, click on **View Application Insights data**.
 
-  ![](media/amf.png)
+   ![](media/amf.png)
 
 6. On the Application Insights blade, select **Live Metrics Stream** from the left-hand menu.
 
-    ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
+   ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
 
     > **Note**: You may see a message that your app is offline. You handle this below.
 
