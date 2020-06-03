@@ -10,31 +10,31 @@ To prepare for hosting their applications in the cloud, they would like to migra
 
 February 2020
 
-## Target audience
+### **Target audience**
 
 - Application developer
 
-## Abstracts
+### **Abstracts**
 
-### Workshop
+### **Workshop**
 
 In this workshop, you gain a better understanding of the steps involved in modernizing legacy on-premises applications and infrastructure by leveraging cloud services. You also see how applications can be enhanced by adding a mix of web and mobile services, all secured using Azure Active Directory.
 
 At the end of this workshop, your ability to design and implement a modernization plan for organizations looking to move services from on-premises to the cloud will be improved.
 
-### Whiteboard design session
+### **Whiteboard design session**
 
 In this whiteboard design session, you work with a group to design a solution for modernizing legacy on-premises applications and infrastructure by leveraging cloud services. As part of the modernization effort, application enhancements are added using a mix of web and mobile services, all secured using Azure Active Directory.
 
 At the end of this whiteboard design session, your ability to design a modernization plan for organizations looking to move services from on-premises to the cloud will be improved.
 
-### Hands-on lab
+### **Hands-on lab**
 
 In this hands-on lab, you implement the steps to modernize a legacy on-premises application, including upgrading and migrating the database to Azure and updating the application to take advantage of serverless and cloud services.
 
 At the end of this hands-on lab, your ability to build solutions for modernizing legacy on-premises applications and infrastructure using cloud services will be improved.
 
-## Azure services and related products
+### **Azure services and related products**
 
 - API Management
 - App Services
@@ -52,13 +52,13 @@ At the end of this hands-on lab, your ability to build solutions for modernizing
 - Visual Studio
 - Xamarin
 
-## Related references
+### **Related references**
 
 - [MCW](https://microsoftcloudworkshop.com)
 - [Reference architecture for Managed Web Applications](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/basic-web-app)
 - [Azure application architecture guide](https://docs.microsoft.com/azure/architecture/guide/)
 
-## Help & Support
+### **Help & Support**
 
 We welcome feedback and comments from Microsoft SMEs & learning partners who deliver MCWs.  
 
