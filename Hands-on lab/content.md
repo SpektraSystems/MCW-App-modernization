@@ -6,7 +6,6 @@
   - Abstract and learning objectives
   - Overview
   - Solution architecture
-  - Requirements
   
   - Exercise 1: Migrate the on-premises database to Azure SQL Database
     - Task 1: Configure the ContosoInsurance database on the SqlServer2008 VM
