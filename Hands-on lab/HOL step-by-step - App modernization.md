@@ -135,7 +135,7 @@ Duration: 45 minutes
 
 In this exercise, you use the Microsoft Data Migration Assistant (DMA) to assess the `ContosoInsurance` database for a migration to Azure SQL Database. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and Azure SQL Database.
 
-> DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the **Data Migration Assistant** documentation here https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current
+> DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the **Data Migration Assistant** documentation here ```https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current```
 
 ### Task 1: Configure the ContosoInsurance database on the SqlServer2008 VM
 
@@ -143,48 +143,27 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
-1. In the Azure portal, navigate to your **SqlServer2008** VM by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **Sql2008-uniqueid VM** from the list of resources.
+1. Connect to the **SqlServer2008 Virtual Machine** from you lab details page by clicking on **Go to SQL2008-Unique Id** button.
 
-   ![](media/am1.png)
+   ![](media/sqlvm.png)
 
-2. On the SqlServer2008 Virtual Machine's **Overview** blade, select **Connect** on the top menu.
-
-   ![](media/am16.png)
-
-3. On the Connect to virtual machine blade, select **Download RDP File**, then open the downloaded RDP file.
-
-4. Select **Connect** on the Remote Desktop Connection dialog.
-
-   ![In the Remote Desktop Connection Dialog Box, the Connect button is highlighted.](./media/remote-desktop-connection-sql-2008.png "Remote Desktop Connection dialog")
-
-5. Enter the following credentials when prompted, and then select **OK**:
-
-   - **Username**: ```demouser```
-   - **Password**: ```Password.1!!```
-
-   ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdc-credentials-sql-2008.png "Enter your credentials")
-
-6. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
-
-   ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](./media/remote-desktop-connection-identity-verification-sqlserver2008.png "Remote Desktop Connection dialog")
-
-7. Once logged into the SqlServer2008 VM, open **Microsoft SQL Server Management Studio** (SSMS) by entering "sql server" into the search bar in the Windows Start menu and selecting **Microsoft SQL Server Management Studio 17** from the results.
+2. Once connected to the SqlServer2008 VM, open **Microsoft SQL Server Management Studio** (SSMS) by entering "sql server" into the search bar in the Windows Start menu and selecting **Microsoft SQL Server Management Studio 17** from the results.
 
    ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
 
-8. In the SSMS **Connect to Server** dialog, enter **Sql2008-uniqueid** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
+3. In the SSMS **Connect to Server** dialog, enter **Sql2008-uniqueid** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
 
    ![](media/am2.png)
 
-9. Once connected, expand **Databases** under Sql2008-uniqueid in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
+4. Once connected, expand **Databases** under Sql2008-uniqueid in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
 
     ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
 
-10. Next, you execute a script in SSMS, which resets the `sa` password, enable mixed mode authentication, create the `WorkshopUser` account, and change the database recovery model to FULL. To create the script, open a new query window in SSMS by selecting **New Query** in the SSMS toolbar.
+5. Next, you execute a script in SSMS, which resets the `sa` password, enable mixed mode authentication, create the `WorkshopUser` account, and change the database recovery model to FULL. To create the script, open a new query window in SSMS by selecting **New Query** in the SSMS toolbar.
 
     ![The New Query button is highlighted in the SSMS toolbar.](media/ssms-new-query.png "SSMS Toolbar")
 
-11. Copy and paste the SQL script below into the new query window:
+6. Copy and paste the SQL script below into the new query window:
 
     ```sql
     USE master;
@@ -223,23 +202,23 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
     GO
     ```
 
-12. To run the script, select **Execute** from the SSMS toolbar.
+7. To run the script, select **Execute** from the SSMS toolbar.
 
     ![The Execute button is highlighted in the SSMS toolbar.](media/ssms-execute.png "SSMS Toolbar")
 
-13. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the Sql2008-uniqueid VM. To do this, you can use SSMS. Right-click the Sql2008-uniqueid instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
+8. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the Sql2008-uniqueid VM. To do this, you can use SSMS. Right-click the Sql2008-uniqueid instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
 
    ![](media/ama.png)
 
-14. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service takes a few seconds to restart.
+9. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service takes a few seconds to restart.
 
    ![The Yes button is highlighted on the dialog asking if you are sure you want to restart the MSSQLSERVER service.](media/ssms-restart-service.png "Restart MSSQLSERVER service")
 
 ### Task 2: Perform assessment for migration to Azure SQL Database
 
-Contoso would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you use the **Microsoft Data Migration Assistant (DMA)** here https://docs.microsoft.com/sql/dma/dma-overview?view=sql-server-2017 to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
+Contoso would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you use the **Microsoft Data Migration Assistant (DMA)** here ```https://docs.microsoft.com/sql/dma/dma-overview?view=sql-server-2017``` to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
 
-> **Note**: The Database Migration Assistant has already been installed on your SqlServer2008 VM. It can also be downloaded from the Microsoft Download Center (https://www.microsoft.com/download/details.aspx?id=53595).
+> **Note**: The Database Migration Assistant has already been installed on your SqlServer2008 VM. It can also be downloaded from the Microsoft Download Center ```(https://www.microsoft.com/download/details.aspx?id=53595)```.
 
 1. On the Sql2008-uniqueid VM, launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
 
@@ -267,7 +246,7 @@ Contoso would like an assessment to see what potential issues they might need to
 
 6. On the **Sources** screen, enter the following into the **Connect to a server** dialog that appears on the right-hand side:
 
-   - **Server name**: Enter ```Sql2008-uniqueid```
+   - **Server name**: Enter ```Sql2008-uniqueid```. For example: Sql2008-176667
    - **Authentication type**: Select **SQL Server Authentication**.
    - **Username**: Enter ```WorkshopUser```
    - **Password**: Enter ```Password.1!!```
@@ -316,7 +295,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 4. On the **Select source** tab, enter the following:
 
-   - **Server name**: Enter ```Sql2008-uniqueid```
+   - **Server name**: Enter ```Sql2008-uniqueid```. For example: Sql2008-176667
    - **Authentication type**: Select **SQL Server Authentication**.
    - **Username**: Enter ``` WorkshopUser ```
    - **Password**: Enter ``` Password.1!! ```
@@ -330,7 +309,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 6. For the **Select target** tab, retrieve the server name associated with your Azure SQL Database. In the Azure portal, navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
 
-   ![](media/amg1.png)
+   ![](media/amg2.png)
 
 7. On the Overview blade of your SQL database, copy the **Server name** by clicking on the copy to clipboard icon.
 
@@ -378,7 +357,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 16. Once connected, expand **Databases**, and expand **ContosoInsurance**, then expand **Tables**, and observe the schema has been created.
 
-   ![](media/amj.png)
+   ![](media/tobeadded.png)
 
 ### Task 4: Retrieve connection information for SQL databases
 
@@ -440,7 +419,7 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
     az sql server list -g $resourceGroup
     ```
 
-    ![The output from the az sql server list command is displayed in the Cloud Shell, and the fullyQualifiedDomainName for the server is highlighted.](media/cloud-shell-az-sql-server-list.png "Azure Cloud Shell")
+   ![](media/app33.png)
 
 11. Copy the **fullyQualifiedDomainName** value into a text editor for use below.
 
@@ -448,15 +427,15 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 At this point, you have migrated the database schema using DMA. In this task, you migrate the data from the `ContosoInsurance` database into the new Azure SQL Database using the Azure Database Migration Service.
 
-> The Azure Database Migration Service (https://docs.microsoft.com/azure/dms/dms-overview) integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
+> The Azure Database Migration Service ```(https://docs.microsoft.com/azure/dms/dms-overview)``` integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
 
 1. In the Azure portal, navigate to your Azure Database Migration Service by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueId** Azure Database Migration Service in the list of resources.
 
-   ![The contoso-dms Azure Database Migration Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-dms-resource.png "Resources")
+   ![](media/amj.png)
 
 2. On the Azure Database Migration Service blade, select **+New Migration Project**.
 
-   ![On the Azure Database Migration Service blade, +New Migration Project is highlighted in the toolbar.](media/dms-add-new-migration-project.png "Azure Database Migration Service New Project")
+   ![](media/amk.png)
 
 3. On the New migration project blade, enter the following:
 
@@ -487,7 +466,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
     - **Password**: ```Password.1!!```
     - **Connection properties**: Check Encrypt connection.
 
-    ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-target.png "Migration Wizard Select target")
+   ![](media/app34.png) 
 
 7. Select **Save**.
 
@@ -513,7 +492,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 14. Monitor the migration on the status screen that appears. Select the refresh icon in the toolbar to retrieve the latest status.
 
-    ![On the Migration job blade, the Refresh button is highlighted, and a status of Full backup uploading is displayed and highlighted.](media/dms-migration-wizard-status-running.png "Migration status")
+   ![](media/app35.png)
 
     > The migration takes approximately 2 - 3 minutes to complete.
 
@@ -521,25 +500,27 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-complete.png "Migration with Completed status")
 
+16. Click on **Next** button.
+
 ## Exercise 2: Post upgrade database enhancements
 
 Duration: 30 minutes
 
-In this exercise you explore some of the security features of Azure SQL Database, and review some of the security benefits that come with running your database in Azure. SQL Database Advance Data Security (https://docs.microsoft.com/azure/sql-database/sql-database-advanced-data-security) provides advanced SQL security capabilities, including functionality for discovering and classifying sensitive data, surfacing and mitigating potential database vulnerabilities, and detecting anomalous activities that could indicate a threat to your database.
+In this exercise you explore some of the security features of Azure SQL Database, and review some of the security benefits that come with running your database in Azure. SQL Database Advance Data Security ```(https://docs.microsoft.com/azure/sql-database/sql-database-advanced-data-security)``` provides advanced SQL security capabilities, including functionality for discovering and classifying sensitive data, surfacing and mitigating potential database vulnerabilities, and detecting anomalous activities that could indicate a threat to your database.
 
 > **Note**: Advanced Data Security was enabled on the database with the ARM template, so you do not need to do that here.
 
 ### Task 1: Configure SQL Data Discovery and Classification
 
-In this task, you look at the SQL Data Discovery and Classification (https://docs.microsoft.com/sql/relational-databases/security/sql-data-discovery-and-classification?view=sql-server-2017) feature of Advanced Data Security. Data Discovery & Classification introduces a new tool for discovering, classifying, labeling & reporting the sensitive data in your databases. It introduces a set of advanced services, forming a new SQL Information Protection paradigm aimed at protecting the data in your database, not just the database. Discovering and classifying your most sensitive data (business, financial, healthcare, etc.) can play a pivotal role in your organizational information protection stature.
+In this task, you look at the SQL Data Discovery and Classification ```(https://docs.microsoft.com/sql/relational-databases/security/sql-data-discovery-and-classification?view=sql-server-2017)``` feature of Advanced Data Security. Data Discovery & Classification introduces a new tool for discovering, classifying, labeling & reporting the sensitive data in your databases. It introduces a set of advanced services, forming a new SQL Information Protection paradigm aimed at protecting the data in your database, not just the database. Discovering and classifying your most sensitive data (business, financial, healthcare, etc.) can play a pivotal role in your organizational information protection stature.
 
 1. In the Azure portal, navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
 
-   ![The contosoinsurance SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
+    ![](media/amg2.png)
 
 2. On the SQL database blade, select **Advance Data Security** from the left-hand menu, and then select the **Data Discovery & Classification** tile.
 
-    ![Advanced Data Security is highlighted in the menu. Data Discovery & Classification option is highlighted to select.](media/e2-03.png "Advance Data Security")
+    ![](media/aml.png)
 
 3. On the **Data Discovery & Classification** blade, select the info link with the message **We have found 7 columns with classification recommendations**.
 
@@ -589,7 +570,7 @@ In this task, you look at the SQL Data Discovery and Classification (https://doc
 
 ### Task 2: Review Advanced Data Security Vulnerability Assessment
 
-In this task, you review an assessment report generated by ADS for the `ContosoInsurance` database. The SQL Vulnerability Assessment service (https://docs.microsoft.com/azure/sql-database/sql-vulnerability-assessment) is a service that provides visibility into your security state, and includes actionable steps to resolve security issues, and enhance your database security.
+In this task, you review an assessment report generated by ADS for the `ContosoInsurance` database. The SQL Vulnerability Assessment service ```(https://docs.microsoft.com/azure/sql-database/sql-vulnerability-assessment)``` is a service that provides visibility into your security state, and includes actionable steps to resolve security issues, and enhance your database security.
 
 1. Return to the **Advanced Data Security** blade for the `ContosoInsurance` SQL database and then select the **Vulnerability Assessment** tile.
 
@@ -597,7 +578,7 @@ In this task, you review an assessment report generated by ADS for the `ContosoI
 
 3. Select **Vulnerability Assessment**.
 
-    ![ContosoInsurance Azure SQL database into Azure Portal. Advanced Data Security is highlighted in the menu. Vulnerability Assessment section is highlighted](media/e2-06.png "Vulnerability Assessment")
+    ![](media/amm.png)
 
 4. On the Vulnerability Assessment blade, select **Scan** on the toolbar.
 
@@ -615,7 +596,7 @@ In this task, you review an assessment report generated by ADS for the `ContosoI
 
 ### Task 3: Enable Dynamic Data Masking
 
-In this task, you enable Dynamic Data Masking (https://docs.microsoft.com/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver15) (DDM) into your Azure SQL Database to limit access to sensitive data in the database through query results. This feature helps prevent unauthorized access to sensitive data by enabling customers to designate how much of the sensitive data to reveal with minimal impact on the application layer. It’s a policy-based security feature that hides the sensitive data in the result set of a query over designated database fields, while the data in the database is not changed.
+In this task, you enable Dynamic Data Masking ```(https://docs.microsoft.com/sql/relational-databases/security/dynamic-data-masking?view=sql-server-ver15)``` (DDM) into your Azure SQL Database to limit access to sensitive data in the database through query results. This feature helps prevent unauthorized access to sensitive data by enabling customers to designate how much of the sensitive data to reveal with minimal impact on the application layer. It’s a policy-based security feature that hides the sensitive data in the result set of a query over designated database fields, while the data in the database is not changed.
 
 > For example, a service representative at a call center may identify callers by several digits of their credit card number, but those data items should not be fully exposed to the service representative. A masking rule can be defined that masks all but the last four digits of any credit card number in the result set of any query. As another example, an appropriate data mask can be defined to protect personally identifiable information (PII) data, so that a developer can query production environments for troubleshooting purposes without violating compliance regulations.
 
@@ -625,7 +606,7 @@ In this task, you enable Dynamic Data Masking (https://docs.microsoft.com/sql/re
 
 2. On the Dynamic Data Masking blade, you may see a few recommended fields to mask that have been flagged as they may contain sensitive data. For our case, we want to apply a mask to the `DOB` field on the `people` table to provide more protection to GDPR data. To do this, select **+ Add mask** in the Dynamic Data Masking toolbar.
 
-    ![Dynamic Data Masking window with recommended fields. The +Add mask button in the toolbar is highlighted.](media/e2-02.png "Dynamic Data Masking")
+    ![](media/amn.png)
 
 3. On the Add masking rule blade, enter the following:
 
@@ -649,13 +630,13 @@ In this task, you enable Dynamic Data Masking (https://docs.microsoft.com/sql/re
     - **Password**: ```Password.1!!```
     - **Remember password**: Check this box.
 
-    ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
+    ![](media/ami.png)
 
 6. Select **Connect**.
 
 7. Once connected, expand Databases, right-click the `ContosoInsurance` database and select **New Query**.
 
-   ![In the SSMS Object explorer, the context menu for the ContosoInsurance database is displayed, and New Query is highlighted.](media/ssms-database-new-query.png "SSMS")
+    ![](media/amo.png)
 
 8. To be able to test the mask applied to the `people.DOB` field, you need to create a user in the database that can be used for testing the masked field. This is because the `demouser` account you used to log in is a privileged user, so the mask is not be applied. In the new query window, paste the following SQL script into the new query window:
 
@@ -698,6 +679,8 @@ In this task, you enable Dynamic Data Masking (https://docs.microsoft.com/sql/re
 
 > **Note**: The SqlServer2008 VM is not needed for the remaining exercises of this hands-on lab. You can log off of that VM.
 
+13. Click on **Next** button.
+
 ## Exercise 3: Configure Key Vault
 
 Duration: 15 minutes
@@ -710,7 +693,7 @@ In this task, you add an access policy to Key Vault to allow secrets to be creat
 
 1. In the Azure portal, navigate to your **Key Vault** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
 
-   ![The contosokv Key vault resource is highlighted in the list of resources.](media/azure-resources-key-vault.png "Key vault")
+  ![](media/amp.png)
 
 2. On the Key Vault blade, select **Access policies** under Settings in the left-hand menu, and then select **+ Add Access Policy**.
 
@@ -739,11 +722,11 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 1. First, you need to retrieve the connection string to your Azure SQL Database. In the Azure portal, navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
 
-   ![The contosoinsurance SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
+  ![](media/amg2.png)
 
-2. On the SQL database blade, select **Connection strings** from the left-hand menu, and then copy the ADO.NET connection string.
+2. On the SQL database blade, select **Connection strings** present under **Settings** pane, and then copy the ADO.NET connection string.
 
-   ![Connection strings is selected and highlighted in the left-hand menu on the SQL database blade, and the copy button is highlighted next to the ADO.NET connection string](media/sql-db-connection-strings.png "Connection strings")
+  ![](media/amq.png)
 
 3. Paste the copied connection string into a text editor, such as Notepad.exe. This is necessary because you need to replace the tokenized password value before adding the connection string as a Secret in Key Vault.
 
@@ -759,11 +742,11 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 7. In the Azure portal, navigate back to your **Key Vault** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
 
-   ![The contosokv Key vault resource is highlighted in the list of resources.](media/azure-resources-key-vault.png "Key vault")
+  ![](media/amp.png)
 
 8. On the Key Vault blade, select **Secrets** under Settings in the left-hand menu, and then select **+ Generate/Import**.
 
-    ![On the Key Vault blade, Secrets is selected and the +Generate/Import button is highlighted.](media/key-vault-secrets.png "Key Vault Secrets")
+  ![](media/amr.png)
 
 9. On the Create a secret blade, enter the following:
 
@@ -789,10 +772,10 @@ In this task, you assign the service principal a reader role on your resource gr
 
 1. Enter the following command at the Cloud Shell prompt, by replacing `<your-subscription-id>` with the value you copied above and `<your-resource-group-name>` with the name of your **hands-on-lab-SUFFIX** resource group, and then press **Enter** to run the command:
 
-```
-$subscriptionId = "<your-subscription-id>"
-$resourceGroup = "<your-resource-group-name>"
-```
+   ```
+   $subscriptionId = "<your-subscription-id>"
+   $resourceGroup = "<your-resource-group-name>"
+   ```
 
 2. Next, run the following command to get the name of your Key Vault:
 
@@ -802,21 +785,25 @@ $resourceGroup = "<your-resource-group-name>"
 
 3. In the output from the previous command, copy the value from the `name` field into a text editor. You use it in the next step and also for configuration of your web and API apps.
 
-    ![The value of the name property is highlighted in the output from the previous command.](media/azure-cloud-shell-az-keyvault-list.png "Azure Cloud Shell")
+   ![](media/app36.png)
 
 4. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor and replacing **http://contoso-apps** in --spn with the **application id** of the pre-created service principal that you can copy from lab details page.
 
-```
-az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
-```
+   ```
+   az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
+   ```
     
  After replacing both the values the command will look similar to one shown below:
  
-    az keyvault set-policy -n contoso-kv-uniqueid --spn 43c4ce7d-ff70-4e08-b438-b80897b0b9c7 --secret-permissions get list
+ ```
+   az keyvault set-policy -n contoso-kv-uniqueid --spn 43c4ce7d-ff70-4e08-b438-b80897b0b9c7 --secret-permissions get list
+ ```
 
 5. In the output, you should see your service principal appId listed with "get" and "list" permissions for secrets.
 
     ![In the output from the command above, the secrets array is highlighted.](media/azure-cloud-shell-az-keyvault-set-policy.png "Azure Cloud Shell")
+    
+6. Click on **Next** button.
 
 ## Exercise 4: Deploy Web API into Azure App Services
 
@@ -828,28 +815,9 @@ The developers at Contoso have been working toward migrating their apps to the c
 
 In this task, you open an RDP connection to the LabVM, and downloading a copy of the starter solution provided by Contoso. The application deployments are handled using Visual Studio 2019, installed on the LabVM.
 
-1. In the Azure portal, navigate to your **LabVM** virtual machine by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **LabVM** virtual machine from the list of resources.
+1. Connect to the SqlServer2008 Virtual Machine from you lab details page by clicking on **Go to LABVM-Unique Id** button.
 
-   ![The LabVM virtual machine is highlighted in the list of resources.](media/resources-sql-labvm.png "LabVM virtual machine")
-
-2. On the LabVM's **Overview** blade, select **Connect** on the top menu.
-
-   ![The LabVM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-labvm.png "Connect to LabVM")
-
-3. On the Connect to virtual machine blade, select **Download RDP File**, then open the downloaded RDP file.
-
-4. Select **Connect** on the Remote Desktop Connection dialog.
-
-5. Enter the following credentials when prompted, and then select **OK**:
-
-   - **Username**: ```demouser```
-   - **Password**: ```Password.1!!```
-
-   ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdc-credentials-sql-2008.png "Enter your credentials")
-
-6. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
-
-   ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](./media/remote-desktop-connection-identity-verification-labvm.png "Remote Desktop Connection dialog")
+   ![](media/labvm.png)
 
 ### Task 2: Open starter solution with Visual Studio
 
@@ -928,11 +896,11 @@ Before deploying the Web API to Azure, you need to add the required application 
 
 1. In the Azure portal, navigate to your **API App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-api-UniqueId** App service from the list of resources.
 
-   ![The API App resource is highlighted in the list of resources.](media/azure-resources-api-app.png "API App")
+   ![](media/amu.png)
 
 2. On the API App blade, select **Configuration** on the left-hand menu.
 
-    ![The Configuration item is highlighted in the API App left-hand menu.](media/api-app-configuration-menu.png "API App")
+   ![](media/amv.png)
 
 3. On the Application settings tab of the Configuration blade, select **Advanced edit** under Application settings. The Advanced edit screen allows you to paste JSON directly into the configuration.
 
@@ -944,7 +912,7 @@ Before deploying the Web API to Azure, you need to add the required application 
     - `<your-service-principal-application-id>`: Replace this with the `appId` value that you can retrieve this value from lab details page.
     - `<your-service-principal-password>`: Replace this with the `password` that you can retrieve this value from lab details page.
 
-    ```json
+   ```json
     [
         {
             "name": "KeyVaultClientId",
@@ -959,7 +927,7 @@ Before deploying the Web API to Azure, you need to add the required application 
             "value": "<your-key-vault-name>"
         }
     ]
-    ```
+   ```
 
 5. The final contents of the editor should look similar to the following:
 
@@ -1002,29 +970,29 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
 3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your API App (resource starting with "contoso-**api**") under your hands-on-lab-SUFFIX resource group.
 
-    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-api App Service is highlighted.](media/visual-studio-publish-app-service-api.png "Select App Service")
+   ![](media/app1.png)
 
 4. Select **OK**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.WebApi` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-api.png "Publish")
+  ![](media/app2.png)
 
 6. In the Visual Studio **Web Publish Activity** view, you should see a status that indicates the Web API was published successfully, along with the URL to the site.
 
-    ![Web Publish Activity view with the publish process status and API site url](media/visual-studio-web-publish-activity-api.png "Web Publish Activity")
+  ![](media/app3.png)
 
     > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log.
 
 7. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you should see a message that the page cannot be found.
 
-    ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
+   ![](media/app41.png)
 
-8. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
+8. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., ```https://contoso-api-186666.azurewebsites.net/swagger/```). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
 
     ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
-    > **Note**: Swagger UI (https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
+    > **Note**: Swagger UI (```https://swagger.io/tools/swagger-ui/```) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
 
 9. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
 
@@ -1036,7 +1004,9 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
 11. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
 
-    ![The response to the execute request is displayed.](media/swagger-execute-response.png "Swagger")
+   ![](media/app5.png)
+
+12. Click on **Next** button.
 
 ## Exercise 5: Deploy web application into Azure App Services
 
@@ -1071,7 +1041,7 @@ In this task, you prepare your Web App to work with the API App by adding the UR
 
 5. In the output, copy two values for use in the next step. Copy the **DefaultHostName** value for your API App (the resource name starts with contoso-**api**) and also copy the Web App **Name** value.
 
-    ![The Web App Name and API App DefaultHostName values are highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list.png "Azure Cloud Shell")
+   ![](media/app37.png)
 
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
@@ -1102,17 +1072,17 @@ In this task, you publish the `Contoso.Web` application into an Azure Web App.
 
 3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Web App (resource starting with "contoso-**web**") under your hands-on-lab-SUFFIX resource group.
 
-    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-web App Service is highlighted.](media/vs-web-publish-app-service.png "Select App Service")
-
+   ![](media/app6.png)
+   
 4. Select **OK**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.Web` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-web.png "Publish")
+   ![](media/app7.png)
 
 6. In the Visual Studio **Web Publish Activity** view, observe the Publish Succeeded message, along with the URL to the site.
 
-    ![Web Publish Activity view with the publish process status and Web App url](media/vs-web-publish-succeeded.png "Web Publish Activity")
+   ![](media/app8.png)
 
 7. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window.
 
@@ -1121,21 +1091,23 @@ In this task, you publish the `Contoso.Web` application into an Azure Web App.
     - **Username**: ```demouser```
     - **Password**: `Password.1!!`
 
-    ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
+   ![](media/app42.png)
 
 9. Once logged in, select **Managed Policy Holders** from the top menu.
 
-    ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
+   ![](media/app43.png)
 
 10. On the Policy Holders page, review the list of policy holder, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
-    ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
+   ![](media/app44.png)
 
 11. On the Policy Holder Details page, select the link under **File Path**, and notice that the result is a page not found error.
 
-    ![The File Path link is highlighted on the Policy Holder Details page.](media/web-app-policy-holder-details.png "PolicyConnect")
+   ![](media/app45.png)
 
 12. Contoso is storing their policy documents on a network file share, so these are not accessible to the deployed web app. In the next exercises, you address that issue.
+
+13. Click on **Next** button.
 
 ## Exercise 6: Upload policy documents into blob storage
 
@@ -1149,7 +1121,7 @@ In this task, you create a new blob container in your storage account for the sc
 
 1. In the Azure portal, navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUniqueId** Storage account resource from the list of resources.
 
-    ![The Storage Account resource is highlighted in the list of resources.](media/resource-group-resources-storage-account.png "Storage account")
+   ![](media/amw.png)
 
 2. From the Storage account Overview blade, select **Containers** under services.
 
@@ -1161,11 +1133,11 @@ In this task, you create a new blob container in your storage account for the sc
 
 4. After the container has been created, select it on the Container blade, then select **Properties** from the left-hand menu, and copy the URL from the policies - Properties blade. Paste the copied URL into a text editor for later reference.
 
-    ![The policies container is selected, with the Properties blade selected, and the URL of the storage container highlighted.](media/e5-04.png "Container properties")
+   ![](media/policyacc.png)
 
 5. Next retrieve the access key for your storage account, which you need to provide to AzCopy below to connect to your storage container. On your Storage account blade in the Azure portal, select **Access keys** from the left-hand menu, and copy the **key1 Key** value to a text editor for use below.
 
-    ![Access Keys is selected on the Storage account. On the blade, access keys and buttons to copy are displayed](media/e5-05.png "Access Keys")
+   ![](media/amx.png)
 
 ### Task 2: Create a SAS token
 
@@ -1200,7 +1172,7 @@ In this task, you download and install **AzCopy**. You then use AzCopy to copy t
 5. Enter the following command at the command prompt. The tokenized values should be replaced as follows:
 
    - `[FILE-SOURCE]`: This is the path to the `policy-documents` folder your downloaded copy of the GitHub repo. If you used the extraction path of `C:\MCW`, the path is `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\policy-documents`.
-   - `[STORAGE-CONTAINER-URL]`: This is the URL to your storage account's policies container, which you copied in the last step of the previous task. (e.g., <https://contosojt7yc3zphxfda.blob.core.windows.net/policies>)
+   - `[STORAGE-CONTAINER-URL]`: This is the URL to your storage account's policies container, which you copied in the last step of the previous task. (e.g., ```https://contoso186666.blob.core.windows.net/policies```)
    - `[STORAGE-ACCOUNT-KEY]`: This is the blob storage account key you copied previously in this task. (e.g., `eqgxGSnCiConfgshXQ1rFwBO+TtCH6sduekk6s8PxPBxHWOmFumycTeOlL3myb8eg4Ba2dn7rtdHnk/1pi6P/w==`)
 
    ```bash
@@ -1220,6 +1192,8 @@ In this task, you download and install **AzCopy**. You then use AzCopy to copy t
 8. You can verify the upload by navigating to the policies container in your Azure Storage account.
 
     ![The policies Container with the Overview blade selected shows the list of uploaded files.](media/e5-07.png "Policies Container")
+
+9.Click on **Next** button.
 
 ## Exercise 7: Create serverless API for accessing PDFs
 
@@ -1254,7 +1228,7 @@ In this task, you prepare your Azure Function App to work with your new Function
 
 5. In the output, copy the **Name** value for use in the next step.
 
-    ![The Function App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list.png "Azure Cloud Shell")
+   ![](media/app38.png)
 
 6. For the next command, you need the URL of your `policies` container and the `SAS token` values you added to your text editor previously. Replace the tokenized values in the following command, and then run it from the Azure Cloud Shell command prompt.
 
@@ -1275,7 +1249,9 @@ Functions can use environment variables to retrieve configuration settings. To t
 
 In this task, you create some environment variables on your LabVM, which allows for debugging your Function App locally on the LabVM.
 
-1. In Solution Explorer, right-click the **Contoso-FunctionApp** project, then select **Properties**
+1. In Solution Explorer, right-click the **Contoso-FunctionApp** project, then select **Properties**.
+
+   ![](media/app9.png)
 
 2. Select the **Debug** tab.
 
@@ -1291,7 +1267,7 @@ In this task, you create some environment variables on your LabVM, which allows 
     - **Name**: Enter **PolicyStorageUrl**
     - **Value**: Paste in the **URL** of the policies container you copied into a text editor in the previous exercise.
 
-    ![Adding environment variables via visual studio project settings.](media/vs-env-variables.png "Add environment variables")
+   ![](media/app47.png)
 
 6. Save the project.
 
@@ -1332,7 +1308,8 @@ In this task, you use Visual Studio to create an Azure Function. This Function s
 
 6. Save `PolicyDocsFunction.cs`.
 
-7. Take a moment to review the code in the Function, and understand how it functions. It uses an `HttpTrigger`, which means the function executes whenever it receives an Http request. You added configuration to restrict the Http requests to only `GET` requests, and the requests must be in format `https://<function-name>.azurewebsites.net/policies/{policyHolder}/{policyName}` for the Function App to route the request to the `PolicyDocs` function. Within the function, an Http request is being made to your Storage account `policy` container URL to retrieve the PDF document for the specified policy holder and policy number. That is then returned to the browser as a PDF attachment.
+7. Take a moment to review the code in the Function, and understand how it functions. It uses an `HttpTrigger`, which means the function executes whenever it receives an Http request. 
+You added configuration to restrict the Http requests to only `GET` requests, and the requests must be in format ```https://<functionname>.azurewebsites.net/policies/{policyHolder}/{policyName}``` for the Function App to route the request to the `PolicyDocs` function. Within the function, an Http request is being made to your Storage account `policy` container URL to retrieve the PDF document for the specified policy holder and policy number. That is then returned to the browser as a PDF attachment.
 
 8. Your Function App is now fully configured to retrieve parameterized values and then retrieve documents from the `policies` container in your Storage account.
 
@@ -1391,13 +1368,13 @@ In this task, you deploy your function into an Azure Function App, where the web
 
 3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Function App (resource starting with "contoso-**func**") under your hands-on-lab-SUFFIX resource group.
 
-    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-func App Service is highlighted.](media/vs-function-app-publish-app-service.png "Select App Service")
+   ![](media/app10.png)
 
 4. Select **OK**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.FunctionApp` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-function.png "Publish")
+   ![](media/app11.png)
 
 6. Ensure you see a publish succeeded message in the Visual Studio Output panel.
 
@@ -1462,7 +1439,7 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
 5. In the output, copy the **DefaultHostName** value into a text editor for use below.
 
-    ![The Function App DefaultHostName value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list-host-name.png "Azure Cloud Shell")
+   ![](media/app39.png)
 
 6. At the Cloud Shell prompt, run the following command to retrieve both your Web App name:
 
@@ -1472,7 +1449,7 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
 7. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
 
-    ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
+   ![](media/app40.png)
 
 8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, and on the overview blade, select **Function app settings**.
 
@@ -1507,22 +1484,22 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
     > **Note**: You can retrieve the URL from the Overview blade of your Web App resource in the Azure portal if you aren't sure what it is.
 
-    ![The URL field in highlighted on the Web App overview blade.](media/web-app-url.png "Web App")
+   ![](media/app11.png)
 
 2. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 
     - **Username**: ```demouser```
     - **Password**: ```Password.1!!```
 
-    ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
+   ![](media/app42.png)
 
 3. Once logged in, select **Managed Policy Holders** from the top menu.
 
-    ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
+   ![](media/app43.png)
 
 4. On the Policy Holders page, you see a list of policy holders, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
-    ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
+   ![](media/app44.png)
 
 5. On the Policy Holder Details page, hover your mouse cursor over the document link under **File Path**, and notice that the path that is displayed at the bottom now points to your Function App, and that the policy holder's last name and policy number are inserted into the path.
 
@@ -1539,22 +1516,24 @@ In this task, you open the PolicyConnect web app and download a policy document.
 2. The page should now display a dashboard featuring telemetry for requests hitting your Function App. Look under the Sample Telemetry section on the right, and you locate the document request you just made. Select the Trace whose message begins with "PolicyDocs function received a request...", and observe the details in the panel below it.
 
     ![Sample telemetry data is displayed on the Live Metrics Stream page.](media/application-insights-sample-telemetry.png "Application Insights")
+    
+3. Click on **Next** button.
 
 ## Exercise 8: Add Cognitive Search for policy documents
 
 Duration: 15 minutes
 
-Contoso has requested the ability to perform full-text searching on policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about cognitive search with the Azure Cognitive Search Service (https://docs.microsoft.com/azure/search/cognitive-search-concept-intro), and are interested to learn if it could be used to make the data in their search index more useful. In this exercise, you configure cognitive search for the policies blob storage container.
+Contoso has requested the ability to perform full-text searching on policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about cognitive search with the Azure Cognitive Search Service ```(https://docs.microsoft.com/azure/search/cognitive-search-concept-intro)```, and are interested to learn if it could be used to make the data in their search index more useful. In this exercise, you configure cognitive search for the policies blob storage container.
 
 ### Task 1: Add Azure Cognitive Search to Storage account
 
 1. In the Azure portal, navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso{UniqueId}** Storage account resource from the list of resources.
 
-   ![The Storage Account resource is highlighted in the list of resources.](media/resource-group-resources-storage-account.png "Storage account")
+   ![](media/amw.png)
 
 2. On the Storage account blade, select **Add Azure Search** from the left-hand menu, and then on the **Select a search service** tab, select your search service.
 
-   ![Add Azure Search is selected and highlighted in the left-hand menu, and the search service is highlighted on the Select a search service tab.](media/add-azure-search-select-a-search-service.png "Add Azure Search")
+   ![](media/app13.png)
 
 3. Select **Next: Connect to your data**.
 
@@ -1567,7 +1546,7 @@ Contoso has requested the ability to perform full-text searching on policy docum
    - **Connection string**: Leave this set to the pre-populated connection string for your Storage account.
    - **Container name**: Enter **policies**.
 
-   ![On the Connect to your data tab, the values specified above are entered in to the form.](media/add-azure-search-connect-to-your-data.png "Add Azure Search")
+   ![](media/app14.png)
 
 5. Select **Next: Add cognitive search (Optional)**.
 
@@ -1578,7 +1557,7 @@ Contoso has requested the ability to perform full-text searching on policy docum
      - **Skillset name**: Enter **policy-docs-skillset**.
      - **Text cognitive skills**: Check this box to select all the skills.
 
-   ![The configuration specified above is entered into the Add cognitive search tab.](media/add-azure-search-add-cognitive-skills.png "Add Azure Search")
+   ![](media/app15.png)
 
 7. Select **Next: Customize target index**.
 
@@ -1606,7 +1585,7 @@ In this task, you run a query against your search index to review the enrichment
 
 1. In the Azure portal, navigate to your **Search service** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-search-UniqueId** Search service resource from the list of resources.
 
-   ![The Search service resource is highlighted in the list of resources.](media/azure-resources-search.png "Search service")
+   ![](media/app16.png)
 
 2. On the Search service blade, select **Indexers**.
 
@@ -1697,6 +1676,8 @@ In this task, you run a query against your search index to review the enrichment
 
 8. As you can see from the search results, the addition of cognitive skills adds valuable metadata to your search index, and helps to make documents and their contents more usable by Contoso.
 
+9. Click on **Next** button.
+
 ## Exercise 9: Import and publish APIs into APIM
 
 Duration: 30 minutes
@@ -1709,17 +1690,17 @@ In this task, you import your API App into APIM, using the OpenAPI specification
 
 1. In the Azure portal, navigate to your **API Management Service** by selecting it from the list of resources under your hands-on-lab-SUFFIX resource group.
 
-    ![The API Management service is highlighted in the resources list.](media/azure-resources-api-management.png "API Management service")
+   ![](media/app17.png)
 
 2. On the API Management service select the **APIs** blade, and then select **+ Add API** and select **OpenAPI**.
 
-    ![API Management Service with APIs blade selected. A button to add a new OpenAPI is highlighted](media/apim-add-api.png "API Management Service Add OpenAPI")
+   ![](media/app19.png)
 
 3. A dialog to Create from OpenAPI specification is displayed. Select **Full** to expand the options that need to be entered.
 
     ![The Create from OpenAPI specification dialog is displayed and Full is highlighted](media/e8-t1-create-api-dialog.png "Create from OpenAPI specification")
 
-4. Retrieve the value for the OpenAPI specification field from the `swagger` page of your API APP. (This is the URL of your API app, which you can retrieve from its overview blade in the Azure portal) plus "/swagger". (e.g., <https://contoso-api-jt7yc3zphxfda.azurewebsites.net/swagger>).
+4. Retrieve the value for the OpenAPI specification field from the `swagger` page of your API APP. (This is the URL of your API app, which you can retrieve from its overview blade in the Azure portal) plus "/swagger". (e.g., ```https://contoso-api-jt7yc3zphxfda.azurewebsites.net/swagger```).
 
 5. On the Swagger page for your API App, right-click on the `swagger/v1/swagger.json` file link just below the PolicyConnect API title, and select **Copy link address**.
 
@@ -1733,11 +1714,11 @@ In this task, you import your API App into APIM, using the OpenAPI specification
     - **URL scheme**: Choose **HTTPS**.
     - **Products**: Select the **Unlimited** tag by clicking the field and selecting it from the dropdown list.
 
-    ![Create from OpenAPI specification dialog is filled and the create button is highlighted.](media/open-api-dialog-complete.png "Create OpenAPI specification")
+   ![](media/app18.png)
 
 7. After creating the API, select the **PolicyConnect API** from the list of APIs on the left, and on the Design tab, with All operations selected, select the **Policies** icon in the Inbound process tile.
 
-    ![On the All operations section, the Inbound processing policies icon is highlighted.](media/apim-inbound-processing.png "API Management")
+   ![](media/app20.png)
 
 8. On the Policies screen, insert the code below between the `<inbound></inbound>` tags, and below the `<base />` tag. You need to **replace** `<your-web-app-url>` between the `<origin></origin>` tags with the URL for your Web App.
 
@@ -1760,7 +1741,7 @@ In this task, you import your API App into APIM, using the OpenAPI specification
 
     Your updated policies value should look similar to the following:
 
-    ![The XML code above has been inserted into the Policies XML document.](media/apim-policies.png "API Management")
+   ![](media/app21.png)
 
     > **Note**: The policy added above is for handling cross-origin resource sharing (CORS). If you are testing the web app locally, you need to add another `<origin></origin>` tag within `<allowed-origins></allowed-origins>` that contains `https://localhost:<port-number>`, where `<port-number>` is the port assigned by your debugger (as is shown in the screenshot above).
 
@@ -1768,7 +1749,7 @@ In this task, you import your API App into APIM, using the OpenAPI specification
 
 10. Next, select the **Settings** tab. On the Settings tab, enter the URL of your API App, starting with `https://`. **Note**: You can copy this value from the text editor you have been using to store values throughout this lab.
 
-    ![The settings tab for the PolicyConnect API is displayed, with the API App url entered into the Web Service URL field.](media/apim-policyconnect-api-settings.png "API Settings")
+   ![](media/app22.png)
 
 11. Select **Save** on the Settings tab.
 
@@ -1778,25 +1759,25 @@ In this task, you import your Function App into APIM.
 
 1. Select **+ Add API** again, and this time select **Function App** as the source of the API.
 
-    ![Add API is highlighted in the left-hand menu, and the Function App tile is highlighted.](media/api-management-add-function-app.png "API Management")
+   ![](media/app23.png)
 
 2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
 
+   ![](media/app24.png)
+
 3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and choose **Select**.
 
-    ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
+   ![](media/app25.png)
 
     >**Note**: You can filter using your resource group name, if needed.
 
 4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and choose **Select**.
 
-    ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
+   ![](media/app26.png)
 
-5. Back on the Create from Function App dialog in APIM, all of the properties for the API are set from your Azure Function. Set the Products to Unlimited, as you did previously. Note, you may need to select **Full** at the top to see the Products box.
+5. Back on the Create from Function App dialog in APIM, all of the properties for the API are set from your Azure Function. Set the Products to Unlimited, as you did previously. Note, you may need to select **Full** at the top to see the Products box. Then Select **Create**.
 
-    ![On the Create from Function App dialog, the values specified above are entered into the form.](media/apim-create-from-function-app.png "API Management")
-
-6. Select **Create**.
+   ![](media/app27.png)
 
 ### Task 3: Open Developer Portal and retrieve you API key
 
@@ -1804,15 +1785,15 @@ In this task, you quickly look at the APIs in the Developer Portal, and retrieve
 
 1. Open the APIM Developer Portal by selecting **Developer portal (legacy)** from the Overview blade of your API Management service in the Azure portal.
 
-    ![On the APIM Service Overview blade the link for the developer portal is highlighted.](media/apim-developer-portal.png "Developer Portal")
+   ![](media/app28.png)
 
 2. In the Azure API Management portal, select **APIs** from the top menu, and then select the API associated with your Function App.
 
-    ![In the Developer portal, the APIs menu item is selected and highlighted, and the Function App API is highlighted.](media/dev-portal-apis-function-app.png "Developer portal")
+   ![](media/app29.png)
 
 3. The API page allows you to view and test your API endpoints directly in the Developer portal.
 
-    ![The Profile link is highlighted on the API page for the Function App API.](media/apim-endpoint-details.png "API Management")
+   ![](media/app30.png)
 
 4. Copy the highlighted request URL. This is the new value you use for the `PolicyDocumentsPath` setting in the next task.
 
@@ -1849,7 +1830,7 @@ In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl`
 
 5. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
 
-    ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
+   ![](media/app40.png)
 
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
@@ -1869,6 +1850,8 @@ In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl`
 7. In the output, note the newly added and updated settings in your Web App's application settings. The settings were updated by the script above and triggered a restart of your web app.
 
 8. In a web browser, navigate to the Web app URL, and verify you still see data when you select one of the tabs.
+
+9. Click on **Next** button.
 
 ## Exercise 10: Create an app in PowerApps
 
@@ -1901,12 +1884,12 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 4. Within the SQL Server connection dialog, enter the following:
 
    - **Authentication Type**: Select **SQL Server Authentication**.
-   - **SQL Server name**: Enter the server name of your Azure SQL database. For example, `contosoinsurance-jjbp34uowoybc.database.windows.net`.
+   - **SQL Server name**: Enter the server name of your Azure SQL database. For example, `contosoinsurance-186666.database.windows.net`.
    - **SQL Database name**: Enter **ContosoInsurance**
    - **Username**: Enter **demouser**
    - **Password**: Enter **Password.1!!**
 
-    ![The SQL Server dialog box fields are completed.](media/powerapps_connection_sqlserver.png "SQL Server dialog box")
+   ![](media/app31.png)
 
 5. Select **Create**.
 
@@ -1926,7 +1909,7 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 5. Select the **policies** table from the Choose a table list.
 
-    ![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapps_select_table.png "PowerApps Studio")
+   ![](media/app32.png)
 
 6. Select **Connect**.
 
@@ -1979,20 +1962,3 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
     ![The Run button is highlighted in the toolbar.](media/powerapp_run_app.png "PowerShell App Studio")
 
 6. Browse through the various policies in the app to explore the functionality.
-
-## After the hands-on lab
-
-Duration: 10 minutes
-
-In this exercise, you de-provision all Azure resources that were created in support of this hands-on lab.
-
-### Task 1: Delete Azure resource groups
-
-1. In the Azure portal, select **Resource groups** from the Azure services list, and locate and delete the **hands-on-lab-SUFFIX** following resource group.
-
-### Task 2: Delete the contoso-apps service principal
-
-1. In the Azure portal, select **Azure Active Directory** and then select **App registrations**.
-2. Select the **contoso-apps** application, and select **Delete** on the application blade.
-
-You should follow all steps provided *after* attending the Hands-on lab.
