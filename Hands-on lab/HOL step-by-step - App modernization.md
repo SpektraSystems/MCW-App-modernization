@@ -357,7 +357,7 @@ After you have reviewed the assessment results and you have ensured the database
 
 16. Once connected, expand **Databases**, and expand **ContosoInsurance**, then expand **Tables**, and observe the schema has been created.
 
-   ![](media/tobeadded.png)
+   ![](media/app49.png)
 
 ### Task 4: Retrieve connection information for SQL databases
 
