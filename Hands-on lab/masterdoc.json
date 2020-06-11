@@ -46,6 +46,10 @@
       {
         "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/MCW-App-modernization/master/Hands-on%20lab/10.md",
         "Order": 11
+      },      
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/SpektraSystems/MCW-App-modernization/master/Hands-on%20lab/lab-completed.md",
+        "Order": 12
       }
     ]
   }
