@@ -1461,7 +1461,7 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
 10. The key will be visble now so copy the **default key** and paste the value into a text editor for reference below.
 
-   ![](media/hostkey2.png)
+    ![](media/hostkey2.png)
 
 11. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
