@@ -1451,15 +1451,19 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
    ![](media/app40.png)
 
-8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, and on the overview blade, select **Function app settings**.
+8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, and under the Functions pane, select **Functions** and click on **PolicyDocs**.
 
-    ![Function app settings is highlighted under Configured Features](media/function-app-configured-features-app-settings.png "Function App")
+   ![](media/hostkey.png)
 
-9. On the Function app settings tab, locate the **Host Keys** section, and copy the **default** key by selecting the **Copy** Action link to the right of the key. Paste the value into a text editor for reference below.
+9. Now click on **Function Keys** present under **Developer** pane. Then click on **Hidden value. Click to show value.**
 
-    ![The Copy button for the default host key is highlighted.](media/function-app-settings-default-host-key.png "Function App")
+   ![](media/hostkey1.png)
 
-10. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
+10. The key will be visble now so copy the **default key** and paste the value into a text editor for reference below.
+
+   ![](media/hostkey2.png)
+
+11. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
     - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
     - `<your-function-app-default-host-name>`: Replace with the `DefaultHostName` of your Function App, which you copied into a text editor above.
@@ -1472,7 +1476,7 @@ In this task, you add the URL of your Azure Function App to the Application sett
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=https://$defaultHostName/api/policies/{policyHolder}/{policyNumber}?code=$defaultHostKey"
     ```
 
-11. In the output, the newly added `PolicyDocumentsPath` setting in your Web App's application settings is visible.
+12. In the output, the newly added `PolicyDocumentsPath` setting in your Web App's application settings is visible.
 
     ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output-policy-documents-path.png "Azure Cloud Shell")
 
