@@ -1933,7 +1933,9 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 4. On the form, edit the **DefaultDeductible** and **DefaultOutOfPocketMax** labels to be **Default Deductible** and **Default Out of Pocket Max**, respectively. To do so, select the field and type the new title in quotes within the formula field.
 
-    > **Hint**: You need to select **Unlock** in order to change fields.
+  > **Hint**: You need to select **Unlock** in order to change fields.
+
+  ![](media/fa3.png)
 
 5. Rename the screen title to Policy by typing "Policy" in quotation marks within the formula field.
 
