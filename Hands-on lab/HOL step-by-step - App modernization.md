@@ -1362,14 +1362,14 @@ In this task, you deploy your function into an Azure Function App, where the web
 
     ![Publish in highlighted in the context menu for the Contoso.FunctionApp project.](media/vs-function-app-publish.png "Publish")
 
-2. On the **Pick a publish target** dialog, select **Azure Functions Consumption Plan**, choose **Select Existing**, leave Run from package file checked, and then select **Create Profile**.
+2. On the **Publish - What are you publishing today** dialog box, select **Azure - Publish your applications to Microsoft Cloud** and click on **Next**.
 
-    ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-function-app-publish-target.png "Publish")
+   ![](media/fa1.png)
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Function App (resource starting with "contoso-**func**") under your hands-on-lab-SUFFIX resource group.
+3. On the App Service dialog, ensure the subscription you published earlier is selected, then select your Function App **contoso-func-uniqueid** under your **hands-on-lab** resource group.
 
-   ![](media/app10.png)
-
+   ![](media/fa2.png)
+   
 4. Select **OK**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.FunctionApp` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
@@ -1384,7 +1384,7 @@ In this task, you deploy your function into an Azure Function App, where the web
 
 In this task, you add Application Insights to your Function App in the Azure Portal, to be able to collect insights into requests against the Function.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-func-UniqueId** App service from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-func-uniqueId** App service from the list of resources.
 
   ![](media/amc.png)
 
