@@ -16,13 +16,10 @@
 
    ![](media/appmod3.png "Get started")
    
-3. On next window, click on **Confirm**.
+3. On next window, click on **Confirm**. You can close the popup which is coming up.
 
    ![](./media/appmod4.png "Confirm")
    
-4. Now, you can close the popup which is coming up.
-
-   ![](media/appmod5.png "Confirm")
    
 5. Now, you will see two tabs in edge browser, close first tab named with **Microsoft Edge**.
 
